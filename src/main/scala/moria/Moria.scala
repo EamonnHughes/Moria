@@ -17,4 +17,5 @@ class Moria extends PApplet {
 object Moria extends App {
   PApplet.main(classOf[Moria].getName)
   println("You lose.")
+  println("loser")
 }
