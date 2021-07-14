@@ -1,6 +1,7 @@
 package moria
 
-import processing.core.PApplet
+import moria.maprenderer._
+import processing.core._
 
 class Moria extends PApplet {
 
@@ -9,7 +10,10 @@ class Moria extends PApplet {
   }
 
   override def draw(): Unit = {
-    rect(10, 10, 100, 100)
+    rect(mazeenterx, mazeentery, 80, 80)
+    rect(mr1x, mr1y, 40, 40)
+    line(mazeenterx, mazeentery, mr1x, mr1y)
+
   }
 }
 
