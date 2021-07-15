@@ -31,7 +31,7 @@ class Moria extends PApplet {
     var yf1: Int = y1
     var yf2: Int = y2
     if (x1 > x2) {
-      xf2 = x2 - xl2
+      xf2 = x2 + xl2
     } else if (x1 < x2) {
       xf1 = x1 + xl1
     } else {
