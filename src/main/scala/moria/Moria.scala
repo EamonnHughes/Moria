@@ -10,7 +10,7 @@ class Moria extends PApplet {
   }
 
   override def draw(): Unit = {
-    rect(mazeenterx, mazeentery, 80, 80)
+    rect(mazeEnterX, mazeEnterY, 80, 80)
     rect(mr1x, mr1y, 40, 40)
     rect(mr2x, mr2y, 40, 40)
   }
