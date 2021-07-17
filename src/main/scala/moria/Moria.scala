@@ -61,6 +61,7 @@ class Moria extends PApplet {
       xf2 = x2 + (xl2 / 2)
     }
     if (y1 > y2) {
+
       yf2 = y2 + yl2
     } else if (y1 < y2) {
       yf1 = y1 + yl1
@@ -73,6 +74,4 @@ class Moria extends PApplet {
 
 object Moria extends App {
   PApplet.main(classOf[Moria].getName)
-  println("You lose.")
-  println("loser")
 }
