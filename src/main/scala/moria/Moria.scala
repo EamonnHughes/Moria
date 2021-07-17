@@ -4,9 +4,12 @@ import moria.maprenderer._
 import processing.core._
 
 class Moria extends PApplet {
+  val BoardWidth = 80
+  val BoardHeight = 60
+  val RectSize = 10
 
   override def settings(): Unit = {
-    size(800, 600)
+    size(BoardWidth * RectSize, BoardHeight * RectSize)
   }
 
   override def draw(): Unit = {
@@ -17,11 +20,21 @@ class Moria extends PApplet {
     connectLine(mazeEnterX, mr1x, mazeEnterY, mr1y, entx, r1x, enty, r1y)
     connectLine(mazeEnterX, mr2x, mazeEnterY, mr2y, entx, r2x, enty, r2y)
 
-    for (i <- 0 to 80) {
-      line((i * 10) - 10, 0, (i * 10) - 10, 700)
+    for (i <- 0 to BoardWidth) {
+      line(
+        (i * RectSize) - RectSize,
+        0,
+        (i * RectSize) - RectSize,
+        BoardHeight * 10
+      )
     }
-    for (i <- 0 to 60) {
-      line(0, (i * 10) - 10, 900, (i * 10) - 10)
+    for (i <- 0 to BoardHeight) {
+      line(
+        0,
+        (i * RectSize) - RectSize,
+        BoardWidth * RectSize,
+        (i * RectSize) - RectSize
+      )
     }
   }
 
