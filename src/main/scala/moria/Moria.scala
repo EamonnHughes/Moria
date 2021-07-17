@@ -14,6 +14,8 @@ class Moria extends PApplet {
     rect(mr1x, mr1y, r1x, r1y)
     rect(mr2x, mr2y, r1y, r2y)
     connectLine(mr1x, mr2x, mr1y, mr2y, r1x, r2x, r1y, r2y)
+    connectLine(mazeEnterX, mr1x, mazeEnterY, mr1y, entx, r1x, enty, r1y)
+    connectLine(mazeEnterX, mr2x, mazeEnterY, mr2y, entx, r2x, enty, r2y)
   }
 
   def connectLine(
@@ -39,7 +41,7 @@ class Moria extends PApplet {
       xf2 = x2 + (xl2 / 2)
     }
     if (y1 > y2) {
-      yf2 = y2 - yl2
+      yf2 = y2 + yl2
     } else if (y1 < y2) {
       yf1 = y1 + yl1
     }
