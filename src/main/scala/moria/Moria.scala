@@ -16,6 +16,13 @@ class Moria extends PApplet {
     connectLine(mr1x, mr2x, mr1y, mr2y, r1x, r2x, r1y, r2y)
     connectLine(mazeEnterX, mr1x, mazeEnterY, mr1y, entx, r1x, enty, r1y)
     connectLine(mazeEnterX, mr2x, mazeEnterY, mr2y, entx, r2x, enty, r2y)
+
+    for (i <- 0 to 80) {
+      line((i * 10) - 10, 0, (i * 10) - 10, 700)
+    }
+    for (i <- 0 to 60) {
+      line(0, (i * 10) - 10, 900, (i * 10) - 10)
+    }
   }
 
   def connectLine(
