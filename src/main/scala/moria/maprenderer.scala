@@ -3,8 +3,8 @@ package moria
 import scala.util.Random
 
 object maprenderer {
-  val mazeEnterX: Int = Random.nextInt(700)
-  val mazeEnterY: Int = Random.nextInt(500)
+  val mazeEnterX: Int = Random.nextInt(75)
+  val mazeEnterY: Int = Random.nextInt(55)
   val firstexit: Int = Random.nextInt(40)
   var mr1y: Int = Random.nextInt(500)
   while (mr1y >= mazeEnterY - enty && mr1y <= mazeEnterY + enty) {
