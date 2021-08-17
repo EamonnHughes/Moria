@@ -1,4 +1,3 @@
-//in the grim darkness of a galaxy a long time ago the sardaukar forged nine magical shard blades in the depths of the uss enterprise.
 package moria
 
 import processing.core._
@@ -17,7 +16,7 @@ class Moria extends PApplet {
     for (i <- 0 to BoardHeight) {
       rectline(i)
     }
-    rect()
+
   }
   def rectline(y: Int): Unit = {
     for (i <- 0 to BoardWidth) {
