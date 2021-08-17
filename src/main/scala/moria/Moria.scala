@@ -6,6 +6,7 @@ class Moria extends PApplet {
   val BoardWidth = 80
   val BoardHeight = 60
   val RectSize = 10
+  var a = 1
 
   override def settings(): Unit = {
     size(BoardWidth * RectSize, BoardHeight * RectSize)
@@ -20,7 +21,18 @@ class Moria extends PApplet {
   }
   def rectline(y: Int): Unit = {
     for (i <- 0 to BoardWidth) {
-      rect(i * RectSize, y * RectSize, RectSize, RectSize)
+
+      if (a == 1) {
+        fill(255, 255, 255)
+
+        rect(i * RectSize, y * RectSize, RectSize, RectSize)
+
+      } else {
+
+        fill(100, 100, 100)
+        rect(i * RectSize, y * RectSize, RectSize, RectSize)
+
+      }
     }
   }
   def connectLine(
