@@ -17,6 +17,7 @@ class Moria extends PApplet {
 
   override def draw(): Unit = {
     background(5, 0, 155)
+    fill(255, 255, 255)
 
     r1.foreach { room =>
       room.drawRoom(this)
@@ -28,10 +29,10 @@ class Moria extends PApplet {
       line(0, (i * 16) - 16, BoardWidth, (i * 16) - 16)
     }
 
-    fill(255, 255, 255)
-    rect(cPosX, cPosY, 16, 16)
     fill(255, 0, 0)
-    ellipse(mouseX, mouseY, 4, 4)
+    rect(cPosX, cPosY, 16, 16)
+    fill(255, 255, 0)
+    rect(((mouseX / 16).ceil) * 16, ((mouseY / 16).ceil) * 16, 16, 16)
 
   }
 
