@@ -29,14 +29,15 @@ class Moria extends PApplet {
       line(0, (i * 16) - 16, BoardWidth, (i * 16) - 16)
     }
 
-    fill(255, 0, 0)
-    rect(cPosX, cPosY, 16, 16)
     fill(255, 255, 0)
     rect(((mouseX / 16).ceil) * 16, ((mouseY / 16).ceil) * 16, 16, 16)
 
+    fill(255, 0, 0)
+    rect(cPosX, cPosY, 16, 16)
+
   }
 
-  override def mouseClicked(event: MouseEvent): Unit = {
+  override def mousePressed(event: MouseEvent): Unit = {
     if (r1.exists(r => r.isInside(event.getX, event.getY))) {
       cPosX = ((event.getX / 16).floor) * 16
       cPosY = ((event.getY / 16).ceil) * 16
