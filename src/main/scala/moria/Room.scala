@@ -8,9 +8,9 @@ case class Room(posX: Int, posY: Int, lX: Int, lY: Int) {
 
   }
   def isInside(x: Float, y: Float): Boolean = {
-    x > posX &&
+    x >= posX &&
     x < posX + lX &&
-    y > posY &&
+    y >= posY &&
     y < posY + lY
   }
 

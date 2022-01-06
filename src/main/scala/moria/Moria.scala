@@ -13,7 +13,12 @@ class Moria extends PApplet {
   var mPosX = cPosX
   var mPosY = cPosY
   var r1 =
-    List(Room(32, 32, 64, 128), Room(128, 32, 64, 128), Room(32, 256, 64, 32))
+    List(
+      Room(32, 32, 64, 128),
+      Room(96, 96, 32, 16),
+      Room(128, 32, 64, 128),
+      Room(32, 256, 64, 32)
+    )
 
   override def settings(): Unit = {
     size(BoardWidth, BoardHeight)
