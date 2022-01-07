@@ -15,7 +15,6 @@ class Moria extends PApplet {
   var r1 =
     List(
       Room(32, 32, 64, 128),
-      Room(96, 96, 32, 16),
       Room(128, 32, 64, 128),
       Room(32, 256, 64, 32)
     )
@@ -41,7 +40,7 @@ class Moria extends PApplet {
     fill(255, 255, 0)
     rect(((mouseX / 16).ceil) * 16, ((mouseY / 16).ceil) * 16, 16, 16)
 
-    waitForSeconds(.4f)
+    waitForSeconds(.2f)
 
     fill(255, 0, 0)
     rect(mPosX, mPosY, 16, 16)
