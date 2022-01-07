@@ -14,10 +14,12 @@ class Moria extends PApplet {
   var mPosY = cPosY
   var r1 =
     List(
-      Room(32, 32, 64, 128),
-      Room(128, 32, 64, 128),
-      Room(32, 256, 64, 32)
+      Room(16, 32, 512, 256),
+      Room(544, 32, 128, 256)
     )
+  var l1 = List(
+    Hallway(528, 64, 544, 64)
+  )
 
   override def settings(): Unit = {
     size(BoardWidth, BoardHeight)
@@ -30,6 +32,7 @@ class Moria extends PApplet {
     r1.foreach { room =>
       room.drawRoom(this)
     }
+    l1.foreach { hall => hall.drawRoom(this) }
     for (i <- 0 until BoardWidth) {
       line((i * 16) - 16, 0, (i * 16) - 16, BoardHeight)
     }
