@@ -15,8 +15,8 @@ case class Enemy(posX: Int, posY: Int) {
     p.rect(posX, posY, 16, 16)
   }
   def RandomMove(): Unit = {
-    var posX = Random.nextInt(1024)
-    var posY = Random.nextInt(512)
+    var posX = Random.nextInt(64) * 16
+    var posY = Random.nextInt(32) * 16
 
   }
   def Navigate(goPosX: Int, goPosY: Int): Unit = {}

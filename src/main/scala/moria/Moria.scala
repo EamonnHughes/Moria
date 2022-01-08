@@ -1,9 +1,9 @@
 package moria
 
 import processing.core._
-import processing.event.MouseEvent
 
 class Moria extends PApplet {
+  Moria.moria = this
 
   var time = System.currentTimeMillis
   val BoardWidth = 1024
@@ -47,17 +47,8 @@ class Moria extends PApplet {
 
     waitForSeconds(.2f)
 
-    fill(255, 0, 0)
-    rect(mPosX, mPosY, 16, 16)
-
   }
 
-  override def mousePressed(event: MouseEvent): Unit = {
-    if (r1.exists(r => r.isInside(event.getX, event.getY))) {
-      cPosX = ((event.getX / 16).floor) * 16
-      cPosY = ((event.getY / 16).ceil) * 16
-    }
-  }
   def waitForSeconds(tTime: Float): Unit = {
     val currentTime = System.currentTimeMillis
     if (currentTime - time > tTime * 1000) {
@@ -84,5 +75,7 @@ class Moria extends PApplet {
 }
 
 object Moria extends App {
-  PApplet.main(classOf[Moria].getName)
+  var moria: Moria = _
+
+  PApplet.main(classOf[Moria])
 }
