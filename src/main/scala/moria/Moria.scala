@@ -12,14 +12,14 @@ class Moria extends PApplet {
   var cPosY = 64.0f
   var mPosX = cPosX
   var mPosY = cPosY
-  var r1 =
-    List(
-      Room(16, 32, 512, 256),
-      Room(544, 32, 128, 256)
-    )
+  var r1 = List(
+    Room(16, 32, 512, 256),
+    Room(544, 32, 128, 256)
+  )
   var l1 = List(
     Hallway(528, 64, 544, 64)
   )
+  var e1 = List(Enemy(16, 32), Enemy(64, 32), Enemy(256, 64))
 
   override def settings(): Unit = {
     size(BoardWidth, BoardHeight)
@@ -30,9 +30,11 @@ class Moria extends PApplet {
     fill(255, 255, 255)
 
     r1.foreach { room =>
-      room.drawRoom(this)
+      room.draw(this)
     }
-    l1.foreach { hall => hall.drawRoom(this) }
+    l1.foreach { hall => hall.draw(this) }
+    fill(150, 20, 20)
+    e1.foreach { enemy => enemy.draw(this) }
     for (i <- 0 until BoardWidth) {
       line((i * 16) - 16, 0, (i * 16) - 16, BoardHeight)
     }
@@ -62,6 +64,7 @@ class Moria extends PApplet {
       time = currentTime
       println("Tick")
       navigatePlayer()
+      e1.foreach(enemy => enemy.RandomMove())
     }
   }
   def navigatePlayer(): Unit = {

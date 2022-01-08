@@ -3,7 +3,7 @@ package moria
 import processing.core._
 
 case class Room(posX: Int, posY: Int, lX: Int, lY: Int) {
-  def drawRoom(p: PApplet): Unit = {
+  def draw(p: PApplet): Unit = {
     p.rect(posX, posY, lX, lY)
 
   }
