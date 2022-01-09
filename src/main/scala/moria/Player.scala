@@ -20,4 +20,27 @@ case class Player(
       gPosY = ((event.getY / 16).ceil) * 16
     }
   }
+
+  def navigatePlayer(): Unit = {
+    if (
+      mPosX > gPosX && Moria.moria.r1.exists(r => r.isInside(mPosX - 16, mPosY))
+    ) {
+      mPosX -= 16
+    }
+    if (
+      mPosY > gPosY && Moria.moria.r1.exists(r => r.isInside(mPosX, mPosY - 16))
+    ) {
+      mPosY -= 16
+    }
+    if (
+      mPosX < gPosX && Moria.moria.r1.exists(r => r.isInside(mPosX + 16, mPosY))
+    ) {
+      mPosX += 16
+    }
+    if (
+      mPosY < gPosY && Moria.moria.r1.exists(r => r.isInside(mPosX, mPosY + 16))
+    ) {
+      mPosY += 16
+    }
+  }
 }

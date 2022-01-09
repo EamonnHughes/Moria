@@ -8,10 +8,7 @@ class Moria extends PApplet {
   var time = System.currentTimeMillis
   val BoardWidth = 1024
   val BoardHeight = 512
-  var cPosX = 64.0f
-  var cPosY = 64.0f
-  var mPosX = cPosX
-  var mPosY = cPosY
+
   var r1 = List(
     Room(16, 32, 512, 256),
     Room(544, 32, 128, 256)
@@ -19,7 +16,12 @@ class Moria extends PApplet {
   var l1 = List(
     Hallway(528, 64, 544, 64)
   )
-  var e1 = List(Enemy(16, 32), Enemy(64, 32), Enemy(256, 64))
+  var e1 = List(
+    Enemy(16, 32),
+    Enemy(64, 32),
+    Enemy(256, 64)
+  )
+  var player = Player(64, 64, 64, 64)
 
   override def settings(): Unit = {
     size(BoardWidth, BoardHeight)
@@ -35,6 +37,7 @@ class Moria extends PApplet {
     l1.foreach { hall => hall.draw(this) }
     fill(150, 20, 20)
     e1.foreach { enemy => enemy.draw(this) }
+    player.draw(this)
     for (i <- 0 until BoardWidth) {
       line((i * 16) - 16, 0, (i * 16) - 16, BoardHeight)
     }
@@ -54,24 +57,10 @@ class Moria extends PApplet {
     if (currentTime - time > tTime * 1000) {
       time = currentTime
       println("Tick")
-      navigatePlayer()
-      e1.foreach(enemy => enemy.RandomMove())
+      player.navigatePlayer()
     }
   }
-  def navigatePlayer(): Unit = {
-    if (cPosX > mPosX && r1.exists(r => r.isInside(mPosX + 16, mPosY))) {
-      mPosX += 16
-    }
-    if (cPosY > mPosY && r1.exists(r => r.isInside(mPosX, mPosY + 16))) {
-      mPosY += 16
-    }
-    if (cPosX < mPosX && r1.exists(r => r.isInside(mPosX - 16, mPosY))) {
-      mPosX -= 16
-    }
-    if (cPosY < mPosY && r1.exists(r => r.isInside(mPosX, mPosY - 16))) {
-      mPosY -= 16
-    }
-  }
+
 }
 
 object Moria extends App {
