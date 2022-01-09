@@ -1,6 +1,7 @@
 package moria
 
 import processing.core._
+import processing.event.MouseEvent
 
 class Moria extends PApplet {
   Moria.moria = this
@@ -59,6 +60,9 @@ class Moria extends PApplet {
       println("Tick")
       player.navigatePlayer()
     }
+  }
+  override def mousePressed(event: MouseEvent): Unit = {
+    player.pClick(mouseX, mouseY)
   }
 
 }
