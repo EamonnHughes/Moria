@@ -57,9 +57,32 @@ class Moria extends PApplet {
     if (currentTime - time > tTime * 1000) {
       time = currentTime
       println("Tick")
-      player.navigatePlayer()
+      //navigatePlayer()
     }
   }
+
+  /*def navigatePlayer(): Unit = {
+    if (
+      mPosX > gPosX && Moria.moria.r1.exists(r => r.isInside(mPosX - 16, mPosY))
+    ) {
+      mPosX -= 16
+    }
+    if (
+      mPosY > gPosY && Moria.moria.r1.exists(r => r.isInside(mPosX, mPosY - 16))
+    ) {
+      mPosY -= 16
+    }
+    if (
+      mPosX < gPosX && Moria.moria.r1.exists(r => r.isInside(mPosX + 16, mPosY))
+    ) {
+      mPosX += 16
+    }
+    if (
+      mPosY < gPosY && Moria.moria.r1.exists(r => r.isInside(mPosX, mPosY + 16))
+    ) {
+      mPosY += 16
+    }
+  }*/
   override def mousePressed(event: MouseEvent): Unit = {
     player.pClick(mouseX, mouseY)
   }

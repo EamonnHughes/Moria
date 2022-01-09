@@ -16,30 +16,8 @@ case class Player(
   def pClick(posX: Int, posY: Int): Unit = {
     if (Moria.moria.r1.exists(r => r.isInside(posX, posY))) {
       gPosX = ((posX / 16).floor) * 16
-      gPosY = ((posY / 16).ceil) * 16
+      gPosY = ((posY / 16).ceil)s * 16
     }
   }
 
-  def navigatePlayer(): Unit = {
-    if (
-      mPosX > gPosX && Moria.moria.r1.exists(r => r.isInside(mPosX - 16, mPosY))
-    ) {
-      mPosX -= 16
-    }
-    if (
-      mPosY > gPosY && Moria.moria.r1.exists(r => r.isInside(mPosX, mPosY - 16))
-    ) {
-      mPosY -= 16
-    }
-    if (
-      mPosX < gPosX && Moria.moria.r1.exists(r => r.isInside(mPosX + 16, mPosY))
-    ) {
-      mPosX += 16
-    }
-    if (
-      mPosY < gPosY && Moria.moria.r1.exists(r => r.isInside(mPosX, mPosY + 16))
-    ) {
-      mPosY += 16
-    }
-  }
 }

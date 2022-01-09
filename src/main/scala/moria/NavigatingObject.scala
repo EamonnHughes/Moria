@@ -1,0 +1,3 @@
+package moria
+
+trait NavigatingObject {}
