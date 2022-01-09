@@ -3,20 +3,20 @@ package moria
 import processing.core.PApplet
 
 case class Player(
-    var mPosX: Float,
-    var mPosY: Float,
-    var gPosX: Float,
-    var gPosY: Float
-) {
+    var posX: Float,
+    var posY: Float,
+    var goX: Float,
+    var goY: Float
+) extends NavigatingObject {
   def draw(p: PApplet): Unit = {
     p.fill(255, 0, 0)
-    p.rect(mPosX, mPosY, 16, 16)
+    p.rect(posX, posY, 16, 16)
   }
 
   def pClick(posX: Int, posY: Int): Unit = {
     if (Moria.moria.r1.exists(r => r.isInside(posX, posY))) {
-      gPosX = ((posX / 16).floor) * 16
-      gPosY = ((posY / 16).ceil)s * 16
+      goX = ((posX / 16).floor) * 16
+      goY = ((posY / 16).ceil) * 16
     }
   }
 
