@@ -19,6 +19,12 @@ case class Enemy(
   }
   def Patrol(): Unit = {}
   def followPlayer(): Unit = {}
-  def Navigate(goPosX: Int, goPosY: Int): Unit = {}
+  def randMov(): Unit = {
+    if (posX == goX && posY == goY) {
+      goX = 0
+      goY = 0
+
+    }
+  }
 
 }

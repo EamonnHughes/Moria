@@ -43,6 +43,7 @@ class Moria extends PApplet {
 
     fill(255, 255, 0)
     rect(((mouseX / 16).ceil) * 16, ((mouseY / 16).ceil) * 16, 16, 16)
+    e1.foreach(enemy => enemy.randMov())
 
     waitForSeconds(.2f)
 
