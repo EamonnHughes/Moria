@@ -2,8 +2,6 @@ package moria
 
 import processing.core.PApplet
 
-import scala.util.Random
-
 case class Enemy(
     var posX: Float,
     var posY: Float,
@@ -19,11 +17,8 @@ case class Enemy(
   def draw(p: PApplet): Unit = {
     p.rect(posX, posY, 16, 16)
   }
-  def RandomMove(): Unit = {
-    var posX = Random.nextInt(64) * 16
-    var posY = Random.nextInt(32) * 16
-
-  }
+  def Patrol(): Unit = {}
+  def followPlayer(): Unit = {}
   def Navigate(goPosX: Int, goPosY: Int): Unit = {}
 
 }
