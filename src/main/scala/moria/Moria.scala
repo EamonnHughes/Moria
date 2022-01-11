@@ -14,9 +14,9 @@ class Moria extends PApplet {
     Room(544, 32, 128, 256)
   )
   var e1 = List(
-    Enemy(16, 32),
-    Enemy(64, 32),
-    Enemy(256, 64)
+    Enemy(16, 32, 16, 64),
+    Enemy(64, 32, 64, 256),
+    Enemy(256, 64, 128, 32)
   )
   var player = Player(64, 64, 64, 64)
 
@@ -52,12 +52,29 @@ class Moria extends PApplet {
     val currentTime = System.currentTimeMillis
     if (currentTime - time > tTime * 1000) {
       time = currentTime
+      navigateObject(player)
+      e1.foreach(enemy => navigateObject(enemy))
       println("Tick")
     }
   }
 
   override def mousePressed(event: MouseEvent): Unit = {
     player.pClick(mouseX, mouseY)
+  }
+
+  def navigateObject(nObj: NavigatingObject): Unit = {
+    if (nObj.posX < nObj.goX) {
+      nObj.posX += 16
+    }
+    if (nObj.posY < nObj.goY) {
+      nObj.posY += 16
+    }
+    if (nObj.posX > nObj.goX) {
+      nObj.posX -= 16
+    }
+    if (nObj.posY > nObj.goY) {
+      nObj.posY -= 16
+    }
   }
 
 }
