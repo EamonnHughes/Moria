@@ -13,9 +13,6 @@ class Moria extends PApplet {
     Room(16, 32, 512, 256),
     Room(544, 32, 128, 256)
   )
-  var l1 = List(
-    Hallway(528, 64, 544, 64)
-  )
   var e1 = List(
     Enemy(16, 32),
     Enemy(64, 32),
@@ -34,7 +31,6 @@ class Moria extends PApplet {
     r1.foreach { room =>
       room.draw(this)
     }
-    l1.foreach { hall => hall.draw(this) }
     fill(150, 20, 20)
     e1.foreach { enemy => enemy.draw(this) }
     player.draw(this)
@@ -57,32 +53,9 @@ class Moria extends PApplet {
     if (currentTime - time > tTime * 1000) {
       time = currentTime
       println("Tick")
-      //navigatePlayer()
     }
   }
 
-  /*def navigatePlayer(): Unit = {
-    if (
-      mPosX > gPosX && Moria.moria.r1.exists(r => r.isInside(mPosX - 16, mPosY))
-    ) {
-      mPosX -= 16
-    }
-    if (
-      mPosY > gPosY && Moria.moria.r1.exists(r => r.isInside(mPosX, mPosY - 16))
-    ) {
-      mPosY -= 16
-    }
-    if (
-      mPosX < gPosX && Moria.moria.r1.exists(r => r.isInside(mPosX + 16, mPosY))
-    ) {
-      mPosX += 16
-    }
-    if (
-      mPosY < gPosY && Moria.moria.r1.exists(r => r.isInside(mPosX, mPosY + 16))
-    ) {
-      mPosY += 16
-    }
-  }*/
   override def mousePressed(event: MouseEvent): Unit = {
     player.pClick(mouseX, mouseY)
   }

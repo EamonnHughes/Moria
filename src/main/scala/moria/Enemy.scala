@@ -4,7 +4,12 @@ import processing.core.PApplet
 
 import scala.util.Random
 
-case class Enemy(posX: Int, posY: Int) {
+case class Enemy(
+    var posX: Float,
+    var posY: Float,
+    var goX: Float,
+    var goY: Float
+) extends NavigatingObject {
 
   var r1 = List(
     Room(16, 32, 512, 256),
