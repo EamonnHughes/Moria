@@ -21,8 +21,7 @@ case class Enemy(
   def followPlayer(): Unit = {}
   def randMov(): Unit = {
     if (posX == goX && posY == goY) {
-      goX = 0
-      goY = 0
+      goX += 32
 
     }
   }
