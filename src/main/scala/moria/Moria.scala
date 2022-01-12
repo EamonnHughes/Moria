@@ -11,7 +11,8 @@ class Moria extends PApplet {
 
   var r1 = List(
     Room(16, 32, 512, 256),
-    Room(544, 32, 128, 256)
+    Room(544, 32, 128, 256),
+    Room(528, 288, 32, 32)
   )
   var e1 = List(
     Enemy(16, 32, 16, 64),
@@ -65,28 +66,54 @@ class Moria extends PApplet {
 
   def navigateObject(nObj: NavigatingObject): Unit = {
     if (
-      nObj.posX < nObj.goX &&
-      r1.exists(room => room.isInside(nObj.posX + 16, nObj.posY))
+      nObj.posX < nObj.goX && nObj.posY < nObj.goY &&
+      r1.exists(room => room.isInside(nObj.posX + 16, nObj.posY + 16))
     ) {
       nObj.posX += 16
-    }
-    if (
-      nObj.posY < nObj.goY &&
-      r1.exists(room => room.isInside(nObj.posX, nObj.posY + 16))
-    ) {
       nObj.posY += 16
-    }
-    if (
-      nObj.posX > nObj.goX &&
-      r1.exists(room => room.isInside(nObj.posX - 16, nObj.posY))
+    } else if (
+      nObj.posX < nObj.goX && nObj.posY > nObj.goY &&
+      r1.exists(room => room.isInside(nObj.posX + 16, nObj.posY - 16))
+    ) {
+      nObj.posX += 16
+      nObj.posY -= 16
+    } else if (
+      nObj.posX > nObj.goX && nObj.posY < nObj.goY &&
+      r1.exists(room => room.isInside(nObj.posX - 16, nObj.posY + 16))
     ) {
       nObj.posX -= 16
-    }
-    if (
-      nObj.posY > nObj.goY &&
-      r1.exists(room => room.isInside(nObj.posX, nObj.posY - 16))
+      nObj.posY += 16
+    } else if (
+      nObj.posX > nObj.goX && nObj.posY > nObj.goY &&
+      r1.exists(room => room.isInside(nObj.posX - 16, nObj.posY - 16))
     ) {
+      nObj.posX -= 16
       nObj.posY -= 16
+    } else {
+      if (
+        nObj.posX < nObj.goX &&
+        r1.exists(room => room.isInside(nObj.posX + 16, nObj.posY))
+      ) {
+        nObj.posX += 16
+      }
+      if (
+        nObj.posY < nObj.goY &&
+        r1.exists(room => room.isInside(nObj.posX, nObj.posY + 16))
+      ) {
+        nObj.posY += 16
+      }
+      if (
+        nObj.posX > nObj.goX &&
+        r1.exists(room => room.isInside(nObj.posX - 16, nObj.posY))
+      ) {
+        nObj.posX -= 16
+      }
+      if (
+        nObj.posY > nObj.goY &&
+        r1.exists(room => room.isInside(nObj.posX, nObj.posY - 16))
+      ) {
+        nObj.posY -= 16
+      }
     }
   }
 
