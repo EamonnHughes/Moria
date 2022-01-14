@@ -2,6 +2,8 @@ package moria
 
 import processing.core.PApplet
 
+import scala.util.Random
+
 case class Enemy(
     var posX: Float,
     var posY: Float,
@@ -20,8 +22,11 @@ case class Enemy(
   def Patrol(): Unit = {}
   def followPlayer(): Unit = {}
   def randMov(): Unit = {
+    var rRoom = r1(Random.nextInt(r1.length))
     if (posX == goX && posY == goY) {
-      goX += 32
+
+      goX = (Random.nextInt(rRoom.lX / 16) * 16) + rRoom.posX
+      goY = (Random.nextInt(rRoom.lY / 16) * 16) + rRoom.posY
 
     }
   }
