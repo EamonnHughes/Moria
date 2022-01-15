@@ -115,11 +115,13 @@ class Moria extends PApplet {
     roomNum
   }
   def dealDamage(
-      attacker: NavigatingObject with HasHealth,
+      attacker: NavigatingObject with DealsDamage,
       defender: NavigatingObject with HasHealth
   ): Unit = {
-    var rToHit = Random.nextInt(100)
-    if()
+    var rToHit = Random.nextInt(100) - attacker.toHitMod
+    if (rToHit <= defender.ac) {
+      defender.health -= attacker.damageDealt
+    }
   }
 }
 
