@@ -1,3 +1,0 @@
-package moria
-
-trait hasHealth {}

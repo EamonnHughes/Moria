@@ -6,8 +6,11 @@ case class Player(
     var posX: Float,
     var posY: Float,
     var goX: Float,
-    var goY: Float
-) extends NavigatingObject {
+    var goY: Float,
+    var health: Int,
+    var ac: Int
+) extends NavigatingObject
+    with HasHealth {
   def draw(p: PApplet): Unit = {
     p.fill(0, 255, 0)
     p.rect(posX, posY, 16, 16)

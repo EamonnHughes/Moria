@@ -8,8 +8,11 @@ case class Enemy(
     var posX: Float,
     var posY: Float,
     var goX: Float,
-    var goY: Float
-) extends NavigatingObject {
+    var goY: Float,
+    var health: Int,
+    var ac: Int
+) extends NavigatingObject
+    with HasHealth {
 
   var r1 = List(
     Room(16, 32, 512, 256),
