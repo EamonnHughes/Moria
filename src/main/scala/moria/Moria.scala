@@ -17,11 +17,11 @@ class Moria extends PApplet {
     Room(528, 288, 32, 32)
   )
   var e1 = List(
-    Enemy(16, 32, 16, 64, 5, 75),
-    Enemy(64, 32, 64, 256, 5, 75),
-    Enemy(256, 64, 128, 32, 5, 75)
+    Enemy(16, 32, 16, 64, 5, 75, 10, 1),
+    Enemy(64, 32, 64, 256, 5, 75, 10, 1),
+    Enemy(256, 64, 128, 32, 5, 75, 10, 1)
   )
-  var player = Player(64, 64, 64, 64, 10, 50)
+  var player = Player(64, 64, 64, 64, 10, 50, 15, 2)
 
   override def settings(): Unit = {
     size(BoardWidth, BoardHeight)
@@ -71,11 +71,13 @@ class Moria extends PApplet {
   def navigateObject(nObj: NavigatingObject): Boolean = {
 
     var moved = false
+
     if (
       nObj.posX < nObj.goX &&
       r1.exists(room => room.isInside(nObj.posX + 16, nObj.posY))
     ) {
       nObj.posX += 16
+
       moved = true
     }
     if (
@@ -99,6 +101,7 @@ class Moria extends PApplet {
       nObj.posY -= 16
       moved = true
     }
+
     moved
   }
 
