@@ -18,6 +18,7 @@ case class Player(
       goX = ((posX / 16).floor) * 16
       goY = ((posY / 16).ceil) * 16
     }
+
   }
 
 }

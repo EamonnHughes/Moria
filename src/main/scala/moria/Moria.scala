@@ -54,8 +54,10 @@ class Moria extends PApplet {
     val currentTime = System.currentTimeMillis
     if (currentTime - time > tTime * 1000) {
       time = currentTime
-      navigateObject(player)
-      e1.foreach(enemy => navigateObject(enemy))
+      if (navigateObject(player)) {
+        e1.foreach(enemy => navigateObject(enemy))
+      }
+
       println("Tick")
     }
   }
@@ -64,33 +66,38 @@ class Moria extends PApplet {
     player.pClick(mouseX, mouseY)
   }
 
-  def navigateObject(nObj: NavigatingObject): Unit = {
+  def navigateObject(nObj: NavigatingObject): Boolean = {
 
+    var moved = false
     if (
       nObj.posX < nObj.goX &&
       r1.exists(room => room.isInside(nObj.posX + 16, nObj.posY))
     ) {
       nObj.posX += 16
+      moved = true
     }
     if (
       nObj.posY < nObj.goY &&
       r1.exists(room => room.isInside(nObj.posX, nObj.posY + 16))
     ) {
       nObj.posY += 16
+      moved = true
     }
     if (
       nObj.posX > nObj.goX &&
       r1.exists(room => room.isInside(nObj.posX - 16, nObj.posY))
     ) {
       nObj.posX -= 16
+      moved = true
     }
     if (
       nObj.posY > nObj.goY &&
       r1.exists(room => room.isInside(nObj.posX, nObj.posY - 16))
     ) {
       nObj.posY -= 16
+      moved = true
     }
-
+    moved
   }
 
   def roomIsIn(nObj: NavigatingObject): Int = {
