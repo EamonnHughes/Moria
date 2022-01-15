@@ -10,6 +10,7 @@ class Moria extends PApplet {
   var time = System.currentTimeMillis
   val BoardWidth = 1024
   val BoardHeight = 512
+  var doneNothing = false
 
   var r1 = List(
     Room(16, 32, 512, 256),
@@ -48,16 +49,17 @@ class Moria extends PApplet {
     rect(((mouseX / 16).ceil) * 16, ((mouseY / 16).ceil) * 16, 16, 16)
     e1.foreach(enemy => enemy.randMov(roomIsIn(enemy)))
 
-    waitForSeconds(.2f)
+    Update(.2f)
 
   }
 
-  def waitForSeconds(tTime: Float): Unit = {
+  def Update(tTime: Float): Unit = {
     val currentTime = System.currentTimeMillis
     if (currentTime - time > tTime * 1000) {
       time = currentTime
-      if (navigateObject(player)) {
+      if (navigateObject(player) || doneNothing) {
         e1.foreach(enemy => navigateObject(enemy))
+        doneNothing = false
       }
 
     }
@@ -69,43 +71,20 @@ class Moria extends PApplet {
 
   override def keyPressed(): Unit = {
     player.pressKey(keyCode)
+    if (key == ' ') {
+      doneNothing = true
+    }
   }
 
   def navigateObject(nObj: NavigatingObject): Boolean = {
 
-    var moved = false
+    var movX = math.signum(nObj.goX - nObj.posX) * 16
+    var movY = math.signum(nObj.goY - nObj.posY) * 16
 
-    if (
-      nObj.posX < nObj.goX &&
-      r1.exists(room => room.isInside(nObj.posX + 16, nObj.posY))
-    ) {
-      nObj.posX += 16
+    nObj.posX += movX
+    nObj.posY += movY
 
-      moved = true
-    }
-    if (
-      nObj.posY < nObj.goY &&
-      r1.exists(room => room.isInside(nObj.posX, nObj.posY + 16))
-    ) {
-      nObj.posY += 16
-      moved = true
-    }
-    if (
-      nObj.posX > nObj.goX &&
-      r1.exists(room => room.isInside(nObj.posX - 16, nObj.posY))
-    ) {
-      nObj.posX -= 16
-      moved = true
-    }
-    if (
-      nObj.posY > nObj.goY &&
-      r1.exists(room => room.isInside(nObj.posX, nObj.posY - 16))
-    ) {
-      nObj.posY -= 16
-      moved = true
-    }
-
-    moved
+    movX != 0 || movY != 0
   }
 
   def roomIsIn(nObj: NavigatingObject): Int = {
