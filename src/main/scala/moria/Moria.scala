@@ -60,7 +60,6 @@ class Moria extends PApplet {
         e1.foreach(enemy => navigateObject(enemy))
       }
 
-      println("Tick")
     }
   }
 
@@ -126,8 +125,10 @@ class Moria extends PApplet {
       defender: NavigatingObject with HasHealth
   ): Unit = {
     var rToHit = Random.nextInt(100) - attacker.toHitMod
+    println(rToHit)
     if (rToHit <= defender.ac) {
       defender.health -= attacker.damageDealt
+      println(defender.health)
     }
   }
 }
