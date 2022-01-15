@@ -22,11 +22,19 @@ case class Enemy(
   def Patrol(): Unit = {}
   def followPlayer(): Unit = {}
   def randMov(): Unit = {
-    var rRoom = r1(Random.nextInt(r1.length))
+    var roomNum = 0
+    for (i <- 0 until r1.length) {
+      var rRoom = r1(i)
+      if (rRoom.isInside(posX, posY)) {
+        roomNum = i
+
+      }
+
+    }
     if (posX == goX && posY == goY) {
 
-      goX = (Random.nextInt(rRoom.lX / 16) * 16) + rRoom.posX
-      goY = (Random.nextInt(rRoom.lY / 16) * 16) + rRoom.posY
+      goX = (Random.nextInt(r1(roomNum).lX / 16) * 16) + r1(roomNum).posX
+      goY = (Random.nextInt(r1(roomNum).lY / 16) * 16) + r1(roomNum).posY
 
     }
   }
