@@ -14,7 +14,8 @@ case class Player(
     var damageDealt: Int
 ) extends NavigatingObject
     with HasHealth
-    with DealsDamage {
+    with DealsDamage
+    with Thing {
   def draw(p: PApplet): Unit = {
     p.fill(0, 255, 0)
     p.rect(posX * 16, posY * 16, 16, 16)
