@@ -69,12 +69,13 @@ class Moria extends PApplet {
     var movX = math.signum(nObj.dst.x - nObj.loc.x)
     var movY = math.signum(nObj.dst.y - nObj.loc.y)
 
-    //if(empty) {
-    nObj.loc.x += movX
-    nObj.loc.y += movY
-    //} else if (enemy there){
-    //dealDamage(player, enemy)
-    //}
+    val newLoc = Location(nObj.loc.x + movX, nObj.loc.y + movY)
+
+    if (World.findThing(newLoc) == null || newLoc == nObj.loc) {
+      nObj.loc = newLoc
+    } else {
+      dealDamage(World.player, World.enemies(0))
+    }
 
     movX != 0 || movY != 0
   }
@@ -85,7 +86,6 @@ class Moria extends PApplet {
       var rRoom = World.rooms(i)
       if (rRoom.isInside(nObj.loc.x, nObj.loc.y)) {
         roomNum = i
-
       }
 
     }
