@@ -81,8 +81,12 @@ class Moria extends PApplet {
     var movX = math.signum(nObj.goX - nObj.posX) * 16
     var movY = math.signum(nObj.goY - nObj.posY) * 16
 
+    //if(empty) {
     nObj.posX += movX
     nObj.posY += movY
+    //} else if (enemy there){
+    //dealDamage(player, enemy)
+    //}
 
     movX != 0 || movY != 0
   }
