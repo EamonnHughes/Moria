@@ -65,56 +65,32 @@ class Moria extends PApplet {
   }
 
   def navigateObject(nObj: NavigatingObject): Unit = {
+
     if (
-      nObj.posX < nObj.goX && nObj.posY < nObj.goY &&
-      r1.exists(room => room.isInside(nObj.posX + 16, nObj.posY + 16))
+      nObj.posX < nObj.goX &&
+      r1.exists(room => room.isInside(nObj.posX + 16, nObj.posY))
     ) {
       nObj.posX += 16
-      nObj.posY += 16
-    } else if (
-      nObj.posX < nObj.goX && nObj.posY > nObj.goY &&
-      r1.exists(room => room.isInside(nObj.posX + 16, nObj.posY - 16))
-    ) {
-      nObj.posX += 16
-      nObj.posY -= 16
-    } else if (
-      nObj.posX > nObj.goX && nObj.posY < nObj.goY &&
-      r1.exists(room => room.isInside(nObj.posX - 16, nObj.posY + 16))
-    ) {
-      nObj.posX -= 16
-      nObj.posY += 16
-    } else if (
-      nObj.posX > nObj.goX && nObj.posY > nObj.goY &&
-      r1.exists(room => room.isInside(nObj.posX - 16, nObj.posY - 16))
-    ) {
-      nObj.posX -= 16
-      nObj.posY -= 16
-    } else {
-      if (
-        nObj.posX < nObj.goX &&
-        r1.exists(room => room.isInside(nObj.posX + 16, nObj.posY))
-      ) {
-        nObj.posX += 16
-      }
-      if (
-        nObj.posY < nObj.goY &&
-        r1.exists(room => room.isInside(nObj.posX, nObj.posY + 16))
-      ) {
-        nObj.posY += 16
-      }
-      if (
-        nObj.posX > nObj.goX &&
-        r1.exists(room => room.isInside(nObj.posX - 16, nObj.posY))
-      ) {
-        nObj.posX -= 16
-      }
-      if (
-        nObj.posY > nObj.goY &&
-        r1.exists(room => room.isInside(nObj.posX, nObj.posY - 16))
-      ) {
-        nObj.posY -= 16
-      }
     }
+    if (
+      nObj.posY < nObj.goY &&
+      r1.exists(room => room.isInside(nObj.posX, nObj.posY + 16))
+    ) {
+      nObj.posY += 16
+    }
+    if (
+      nObj.posX > nObj.goX &&
+      r1.exists(room => room.isInside(nObj.posX - 16, nObj.posY))
+    ) {
+      nObj.posX -= 16
+    }
+    if (
+      nObj.posY > nObj.goY &&
+      r1.exists(room => room.isInside(nObj.posX, nObj.posY - 16))
+    ) {
+      nObj.posY -= 16
+    }
+
   }
 
 }
