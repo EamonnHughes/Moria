@@ -3,6 +3,8 @@ package moria
 import processing.core._
 import processing.event.MouseEvent
 
+import scala.util.Random
+
 class Moria extends PApplet {
   Moria.moria = this
   var time = System.currentTimeMillis
@@ -15,11 +17,11 @@ class Moria extends PApplet {
     Room(528, 288, 32, 32)
   )
   var e1 = List(
-    Enemy(16, 32, 16, 64),
-    Enemy(64, 32, 64, 256),
-    Enemy(256, 64, 128, 32)
+    Enemy(16, 32, 16, 64, 5, 75),
+    Enemy(64, 32, 64, 256, 5, 75),
+    Enemy(256, 64, 128, 32, 5, 75)
   )
-  var player = Player(64, 64, 64, 64)
+  var player = Player(64, 64, 64, 64, 10, 50)
 
   override def settings(): Unit = {
     size(BoardWidth, BoardHeight)
@@ -113,9 +115,12 @@ class Moria extends PApplet {
     roomNum
   }
   def dealDamage(
-      attacker: NavigatingObject,
-      defender: NavigatingObject
-  ): Unit = {}
+      attacker: NavigatingObject with HasHealth,
+      defender: NavigatingObject with HasHealth
+  ): Unit = {
+    var rToHit = Random.nextInt(100)
+    if()
+  }
 }
 
 object Moria extends App {
