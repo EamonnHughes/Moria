@@ -112,7 +112,10 @@ class Moria extends PApplet {
     }
     roomNum
   }
-
+  def dealDamage(
+      attacker: NavigatingObject,
+      defender: NavigatingObject
+  ): Unit = {}
 }
 
 object Moria extends App {
