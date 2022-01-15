@@ -66,12 +66,12 @@ class Moria extends PApplet {
 
   def navigateObject(nObj: NavigatingObject): Boolean = {
 
-    var movX = math.signum(nObj.goX - nObj.posX)
-    var movY = math.signum(nObj.goY - nObj.posY)
+    var movX = math.signum(nObj.dst.x - nObj.loc.x)
+    var movY = math.signum(nObj.dst.y - nObj.loc.y)
 
     //if(empty) {
-    nObj.posX += movX
-    nObj.posY += movY
+    nObj.loc.x += movX
+    nObj.loc.y += movY
     //} else if (enemy there){
     //dealDamage(player, enemy)
     //}
@@ -83,7 +83,7 @@ class Moria extends PApplet {
     var roomNum = 0
     for (i <- 0 until World.rooms.length) {
       var rRoom = World.rooms(i)
-      if (rRoom.isInside(nObj.posX, nObj.posY)) {
+      if (rRoom.isInside(nObj.loc.x, nObj.loc.y)) {
         roomNum = i
 
       }

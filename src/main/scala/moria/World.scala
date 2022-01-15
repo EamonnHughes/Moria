@@ -4,6 +4,12 @@ object World {
   var rooms = List(
     Room(2, 2, 32, 16)
   )
-  var enemies = List(Enemy(2, 2, 3, 3, 5, 75, 10, 1))
-  var player = Player(4, 4, 4, 4, 10, 50, 15, 2)
+  var enemies = List(Enemy(Location(2, 2), Location(2, 2), 5, 75, 10, 1))
+  var player = Player(Location(4, 4), Location(4, 4), 10, 50, 15, 2)
+
+  def things: List[Thing] = player :: enemies
+
+  def findThing(location: Location): Thing = { // null
+    things.find(thing => thing.loc == location).orNull
+  }
 }

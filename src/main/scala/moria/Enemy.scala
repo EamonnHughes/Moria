@@ -5,10 +5,8 @@ import processing.core.PApplet
 import scala.util.Random
 
 case class Enemy(
-    var posX: Float,
-    var posY: Float,
-    var goX: Float,
-    var goY: Float,
+    var loc: Location,
+    var dst: Location,
     var health: Int,
     var ac: Int,
     var toHitMod: Int,
@@ -20,19 +18,19 @@ case class Enemy(
 
   def draw(p: PApplet): Unit = {
     p.fill(255, 0, 0)
-    p.rect(posX * 16, posY * 16, 16, 16)
+    p.rect(loc.x * 16, loc.y * 16, 16, 16)
   }
   def Patrol(): Unit = {}
   def followPlayer(): Unit = {}
   def randMov(roomNum: Int): Unit = {
 
-    if (posX == goX && posY == goY) {
+    if (loc == dst) {
 
-      goX = (Random
+      dst.x = (Random
         .nextInt(World.rooms(roomNum).lX)) + World
         .rooms(roomNum)
         .posX
-      goY = (Random
+      dst.y = (Random
         .nextInt(World.rooms(roomNum).lY)) + World
         .rooms(roomNum)
         .posY

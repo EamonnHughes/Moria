@@ -1,39 +1,35 @@
 package moria
-
-import processing.core.PApplet
 import processing.core.PConstants._
+import processing.core._
 
 case class Player(
-    var posX: Float,
-    var posY: Float,
-    var goX: Float,
-    var goY: Float,
+    var loc: Location,
+    var dst: Location,
     var health: Int,
     var ac: Int,
     var toHitMod: Int,
     var damageDealt: Int
 ) extends NavigatingObject
     with HasHealth
-    with DealsDamage
-    with Thing {
+    with DealsDamage {
   def draw(p: PApplet): Unit = {
     p.fill(0, 255, 0)
-    p.rect(posX * 16, posY * 16, 16, 16)
+    p.rect(loc.x * 16, loc.y * 16, 16, 16)
   }
 
   def pClick(posX: Int, posY: Int): Unit = {
     if (World.rooms.exists(r => r.isInside(posX, posY))) {
-      goX = ((posX / 16).floor)
-      goY = ((posY / 16).ceil)
+      dst.x = ((posX / 16).floor.toInt)
+      dst.y = ((posY / 16).ceil.toInt)
     }
 
   }
 
   def pressKey(keyCode: Int): Unit = {
-    if (keyCode == UP) { goX = posX; goY = posY - 1 }
-    if (keyCode == DOWN) { goX = posX; goY = posY + 1 }
-    if (keyCode == LEFT) { goX = posX - 1; goY = posY }
-    if (keyCode == RIGHT) { goX = posX + 1; goY = posY }
+    if (keyCode == UP) { dst.x = loc.x; dst.y = loc.y - 1 }
+    if (keyCode == DOWN) { dst.x = loc.x; dst.y = loc.y + 1 }
+    if (keyCode == LEFT) { dst.x = loc.x - 1; dst.y = loc.y }
+    if (keyCode == RIGHT) { dst.x = loc.x + 1; dst.y = loc.y }
   }
 
 }
