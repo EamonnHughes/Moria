@@ -22,7 +22,7 @@ case class Player(
   }
 
   def pClick(posX: Int, posY: Int): Unit = {
-    if (Moria.moria.r1.exists(r => r.isInside(posX, posY))) {
+    if (World.rooms.exists(r => r.isInside(posX, posY))) {
       goX = ((posX / 16).floor)
       goY = ((posY / 16).ceil)
     }

@@ -1,3 +1,5 @@
 package moria
 
-trait Thing {}
+trait Thing {
+  var loc: Location
+}

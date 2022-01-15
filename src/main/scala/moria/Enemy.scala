@@ -29,12 +29,12 @@ case class Enemy(
     if (posX == goX && posY == goY) {
 
       goX = (Random
-        .nextInt(Moria.moria.r1(roomNum).lX)) + Moria.moria
-        .r1(roomNum)
+        .nextInt(World.rooms(roomNum).lX)) + World
+        .rooms(roomNum)
         .posX
       goY = (Random
-        .nextInt(Moria.moria.r1(roomNum).lY)) + Moria.moria
-        .r1(roomNum)
+        .nextInt(World.rooms(roomNum).lY)) + World
+        .rooms(roomNum)
         .posY
 
     }
