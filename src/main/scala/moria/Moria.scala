@@ -26,13 +26,13 @@ class Moria extends PApplet {
   }
 
   override def draw(): Unit = {
-    background(5, 0, 155)
+    background(100, 100, 100)
     fill(255, 255, 255)
 
     r1.foreach { room =>
       room.draw(this)
     }
-    fill(150, 20, 20)
+
     e1.foreach { enemy => enemy.draw(this) }
     player.draw(this)
     for (i <- 0 until BoardWidth) {
@@ -42,7 +42,7 @@ class Moria extends PApplet {
       line(0, (i * 16) - 16, BoardWidth, (i * 16) - 16)
     }
 
-    fill(255, 255, 0)
+    fill(255, 255, 0, 75)
     rect(((mouseX / 16).ceil) * 16, ((mouseY / 16).ceil) * 16, 16, 16)
     e1.foreach(enemy => enemy.randMov())
 
@@ -91,6 +91,19 @@ class Moria extends PApplet {
       nObj.posY -= 16
     }
 
+  }
+
+  def roomIsIn(nObj: NavigatingObject): Int = {
+    var roomNum = 0
+    for (i <- 0 until r1.length) {
+      var rRoom = r1(i)
+      if (rRoom.isInside(nObj.posX, nObj.posY)) {
+        roomNum = i
+
+      }
+
+    }
+    roomNum
   }
 
 }

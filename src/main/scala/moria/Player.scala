@@ -9,7 +9,7 @@ case class Player(
     var goY: Float
 ) extends NavigatingObject {
   def draw(p: PApplet): Unit = {
-    p.fill(255, 0, 0)
+    p.fill(0, 255, 0)
     p.rect(posX, posY, 16, 16)
   }
 
