@@ -17,14 +17,9 @@ case class Enemy(
     with HasHealth
     with DealsDamage {
 
-  var r1 = List(
-    Room(16, 32, 512, 256),
-    Room(544, 32, 128, 256)
-  )
-
   def draw(p: PApplet): Unit = {
     p.fill(255, 0, 0)
-    p.rect(posX, posY, 16, 16)
+    p.rect(posX * 16, posY * 16, 16, 16)
   }
   def Patrol(): Unit = {}
   def followPlayer(): Unit = {}
@@ -32,8 +27,14 @@ case class Enemy(
 
     if (posX == goX && posY == goY) {
 
-      goX = (Random.nextInt(r1(roomNum).lX / 16) * 16) + r1(roomNum).posX
-      goY = (Random.nextInt(r1(roomNum).lY / 16) * 16) + r1(roomNum).posY
+      goX = (Random
+        .nextInt(Moria.moria.r1(roomNum).lX)) + Moria.moria
+        .r1(roomNum)
+        .posX
+      goY = (Random
+        .nextInt(Moria.moria.r1(roomNum).lY)) + Moria.moria
+        .r1(roomNum)
+        .posY
 
     }
   }
