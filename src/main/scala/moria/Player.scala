@@ -1,6 +1,7 @@
 package moria
 
 import processing.core.PApplet
+import processing.core.PConstants._
 
 case class Player(
     var posX: Float,
@@ -25,6 +26,13 @@ case class Player(
       goY = ((posY / 16).ceil) * 16
     }
 
+  }
+
+  def pressKey(keyCode: Int): Unit = {
+    if (keyCode == UP) { goX = posX; goY = posY - 16 }
+    if (keyCode == DOWN) { goX = posX; goY = posY + 16 }
+    if (keyCode == LEFT) { goX = posX - 16; goY = posY }
+    if (keyCode == RIGHT) { goX = posX + 16; goY = posY }
   }
 
 }

@@ -68,6 +68,10 @@ class Moria extends PApplet {
     player.pClick(mouseX, mouseY)
   }
 
+  override def keyPressed(): Unit = {
+    player.pressKey(keyCode)
+  }
+
   def navigateObject(nObj: NavigatingObject): Boolean = {
 
     var moved = false
