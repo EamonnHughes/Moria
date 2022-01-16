@@ -11,6 +11,7 @@ class Moria extends PApplet {
   val BoardWidth = 1024
   val BoardHeight = 512
   var doneNothing = false
+  var doAttack = false
 
   override def settings(): Unit = {
     size(BoardWidth, BoardHeight)
@@ -49,6 +50,10 @@ class Moria extends PApplet {
         World.enemies.foreach(enemy => navigateObject(enemy))
         doneNothing = false
       }
+      if (doAttack) {
+        dealDamage(World.player, World.enemies(0))
+        doAttack = false
+      }
 
     }
   }
@@ -69,12 +74,13 @@ class Moria extends PApplet {
     var movX = math.signum(nObj.dst.x - nObj.loc.x)
     var movY = math.signum(nObj.dst.y - nObj.loc.y)
 
-    val newLoc = Location(nObj.loc.x + movX, nObj.loc.y + movY)
+    var newLoc = Location(nObj.loc.x + movX, nObj.loc.y + movY)
 
     if (World.findThing(newLoc) == null || newLoc == nObj.loc) {
       nObj.loc = newLoc
     } else {
-      dealDamage(World.player, World.enemies(0))
+      doAttack = true
+      newLoc = nObj.loc
     }
 
     movX != 0 || movY != 0
