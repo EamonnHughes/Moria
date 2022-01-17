@@ -3,8 +3,6 @@ package moria
 import processing.core._
 import processing.event.MouseEvent
 
-import scala.util.Random
-
 class Moria extends PApplet {
 
   var time = System.currentTimeMillis
@@ -36,7 +34,6 @@ class Moria extends PApplet {
 
     fill(255, 255, 0, 75)
     rect(((mouseX / 16).ceil) * 16, ((mouseY / 16).ceil) * 16, 16, 16)
-    World.enemies.foreach(enemy => enemy.randMov(roomIsIn(enemy)))
 
     Update(.2f)
 
@@ -48,12 +45,13 @@ class Moria extends PApplet {
       time = currentTime
       if (navigateObject(World.player) || doneNothing || doAttack) {
         World.enemies.foreach(enemy => navigateObject(enemy))
+        World.enemies.foreach(enemy => enemy.chooseState())
         doneNothing = false
         doAttack = false
       }
 
     }
-    checkForDead()
+    World.checkForDead()
   }
 
   override def mousePressed(event: MouseEvent): Unit = {
@@ -78,51 +76,14 @@ class Moria extends PApplet {
       nObj.loc = newLoc
     } else {
       doAttack = true
-      dealDamage(World.player, World.enemies(nextFoe(nObj, newLoc)))
+      Combat.dealDamage(
+        World.player,
+        World.enemies(World.nextFoe(nObj, newLoc))
+      )
       newLoc = nObj.loc
     }
 
     movX != 0 || movY != 0
-  }
-
-  def roomIsIn(nObj: NavigatingObject): Int = {
-    var roomNum = 0
-    for (i <- 0 until World.rooms.length) {
-      var rRoom = World.rooms(i)
-      if (rRoom.isInside(nObj.loc.x, nObj.loc.y)) {
-        roomNum = i
-      }
-
-    }
-    roomNum
-  }
-  def nextFoe(nObj: NavigatingObject, newLoc: Location): Int = {
-    var enNum = 0
-    for (i <- 0 until World.enemies.length) {
-      var eEnemy = World.enemies(i)
-      if (eEnemy.loc == newLoc) {
-        enNum = i
-      }
-
-    }
-    var foeNum = enNum
-    foeNum
-  }
-  def dealDamage(
-      attacker: NavigatingObject with DealsDamage,
-      defender: NavigatingObject with HasHealth
-  ): Unit = {
-    var rToHit = Random.nextInt(100) - attacker.toHitMod
-    println(rToHit)
-    if (rToHit <= defender.ac) {
-      defender.health -= attacker.damageDealt
-      println(defender.health)
-    }
-  }
-  def checkForDead(): Unit = {
-
-    World.enemies = World.enemies.filter(enemy => enemy.health > 0)
-
   }
 
 }

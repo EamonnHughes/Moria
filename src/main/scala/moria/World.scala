@@ -15,4 +15,33 @@ object World {
   def findThing(location: Location): Thing = { // null
     things.find(thing => thing.loc == location).orNull
   }
+
+  def roomIsIn(nObj: NavigatingObject): Int = {
+    var roomNum = 0
+    for (i <- 0 until World.rooms.length) {
+      var rRoom = World.rooms(i)
+      if (rRoom.isInside(nObj.loc.x, nObj.loc.y)) {
+        roomNum = i
+      }
+
+    }
+    roomNum
+  }
+  def nextFoe(nObj: NavigatingObject, newLoc: Location): Int = {
+    var enNum = 0
+    for (i <- 0 until World.enemies.length) {
+      var eEnemy = World.enemies(i)
+      if (eEnemy.loc == newLoc) {
+        enNum = i
+      }
+
+    }
+    var foeNum = enNum
+    foeNum
+  }
+  def checkForDead(): Unit = {
+
+    enemies = enemies.filter(enemy => enemy.health > 0)
+
+  }
 }

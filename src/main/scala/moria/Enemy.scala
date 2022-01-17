@@ -32,21 +32,21 @@ case class Enemy(
   }
   def chooseState(): Unit = {
     if (
-      World.player.loc.x > loc.x + 6 || World.player.loc.x < loc.x - 6 || World.player.loc.y > loc.y + 6 || World.player.loc.y < loc.y - 6
+      (World.player.loc.x > loc.x + 6 || World.player.loc.x < loc.x - 6) && (World.player.loc.y > loc.y + 6 || World.player.loc.y < loc.y - 6)
     ) {
-      Patrol()
+      randMov(World.roomIsIn(this))
     } else if (
-      World.player.loc.x <= loc.x + 6 || World.player.loc.x >= loc.x - 6 || World.player.loc.y <= loc.y + 6 || World.player.loc.y >= loc.y - 6
+      (World.player.loc.x <= loc.x + 6 || World.player.loc.x >= loc.x - 6) && (World.player.loc.y <= loc.y + 6 || World.player.loc.y >= loc.y - 6)
     ) {
       followPlayer()
     } else if (
-      World.player.loc.x == loc.x + 1 || World.player.loc.x == loc.x - 1 || World.player.loc.y == loc.y + 1 || World.player.loc.y == loc.y - 1
+      (World.player.loc.x == loc.x + 1 || World.player.loc.x == loc.x - 1) && (World.player.loc.y == loc.y + 1 || World.player.loc.y == loc.y - 1)
     ) {
       attackPlayer()
     }
   }
   def Patrol(): Unit = {}
-  def followPlayer(): Unit = {}
+  def followPlayer(): Unit = { dst = World.player.loc }
   def attackPlayer(): Unit = {}
   def randMov(roomNum: Int): Unit = {
 
