@@ -65,7 +65,7 @@ class Moria extends PApplet {
     }
   }
 
-  def navigateObject(nObj: NavigatingObject): Boolean = {
+  def navigateObject(nObj: NavigatingObject with DealsDamage): Boolean = {
 
     var movX = math.signum(nObj.dst.x - nObj.loc.x)
     var movY = math.signum(nObj.dst.y - nObj.loc.y)
@@ -75,11 +75,13 @@ class Moria extends PApplet {
     if (World.findThing(newLoc) == null || newLoc == nObj.loc) {
       nObj.loc = newLoc
     } else {
-      doAttack = true
-      Combat.dealDamage(
-        World.player,
-        World.enemies(World.nextFoe(nObj, newLoc))
-      )
+      World.findThing(newLoc) match {
+        case hh: NavigatingObject with HasHealth =>
+          Combat.dealDamage(nObj, hh)
+          if (nObj == Player) { doAttack = true }
+        case _ =>
+      }
+
       newLoc = nObj.loc
     }
 

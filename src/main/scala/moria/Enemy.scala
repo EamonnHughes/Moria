@@ -10,12 +10,12 @@ case class Enemy(
     var health: Int,
     var ac: Int,
     var toHitMod: Int,
-    var damageDealt: Int
+    var damageDealt: Int,
+    var maxHealth: Int
 ) extends NavigatingObject
     with HasHealth
     with DealsDamage
     with Thing {
-  val maxHealth = health
 
   def draw(p: PApplet): Unit = {
     p.fill(255, 0, 0)
@@ -37,7 +37,10 @@ case class Enemy(
       randMov(World.roomIsIn(this))
       println("Random Movement")
     } else if (
-      (World.player.loc.x <= loc.x + 6 || World.player.loc.x >= loc.x - 6) && (World.player.loc.y <= loc.y + 6 || World.player.loc.y >= loc.y - 6) && (!(World.player.loc.x == loc.x + 1 || World.player.loc.x == loc.x - 1 || World.player.loc.x == loc.x) && (World.player.loc.y == loc.y + 1 || World.player.loc.y == loc.y - 1 || World.player.loc.y == loc.y))
+      (World.player.loc.x <= loc.x + 6 || World.player.loc.x >= loc.x - 6) &&
+      (World.player.loc.y <= loc.y + 6 || World.player.loc.y >= loc.y - 6) &&
+      ((World.player.loc.x != loc.x + 1 && World.player.loc.x != loc.x - 1 && World.player.loc.x != loc.x) &&
+      (World.player.loc.y != loc.y + 1 && World.player.loc.y != loc.y - 1 && World.player.loc.y != loc.y))
     ) {
       followPlayer()
       println("Following Player")

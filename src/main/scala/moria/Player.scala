@@ -8,13 +8,23 @@ case class Player(
     var health: Int,
     var ac: Int,
     var toHitMod: Int,
-    var damageDealt: Int
+    var damageDealt: Int,
+    var maxHealth: Int
 ) extends NavigatingObject
     with HasHealth
     with DealsDamage {
   def draw(p: PApplet): Unit = {
+
     p.fill(0, 255, 0)
     p.rect(loc.x * 16, loc.y * 16, 16, 16)
+    p.fill(
+      255 * (maxHealth - health) / maxHealth,
+      (255 * (health)) / maxHealth,
+      0
+    )
+    p.rect(loc.x * 16, loc.y * 16, 16 * health / maxHealth, -10)
+    p.fill(255, 0, 0)
+    p.text(health, loc.x * 16, loc.y * 16)
   }
 
   def pClick(posX: Int, posY: Int): Unit = {
