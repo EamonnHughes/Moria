@@ -25,9 +25,7 @@ case class Enemy(
       (255 * (health)) / maxHealth,
       0
     )
-    p.rect(loc.x * 16, loc.y * 16, 16 * health / maxHealth, -10)
-    p.fill(255, 0, 0)
-    p.text(health, loc.x * 16, loc.y * 16)
+    p.rect(loc.x * 16, loc.y * 16, 16 * health / maxHealth, 4)
 
   }
   def chooseState(): Unit = {
@@ -45,7 +43,8 @@ case class Enemy(
       followPlayer()
       println("Following Player")
     } else if (
-      (World.player.loc.x == loc.x + 1 || World.player.loc.x == loc.x - 1 || World.player.loc.x == loc.x) && (World.player.loc.y == loc.y + 1 || World.player.loc.y == loc.y - 1 || World.player.loc.y == loc.y)
+      (World.player.loc.x == loc.x + 1 || World.player.loc.x == loc.x - 1 || World.player.loc.x == loc.x) &&
+      (World.player.loc.y == loc.y + 1 || World.player.loc.y == loc.y - 1 || World.player.loc.y == loc.y)
     ) {
       attackPlayer()
       println("Attacking Player")
@@ -53,7 +52,7 @@ case class Enemy(
   }
   def Patrol(): Unit = {}
   def followPlayer(): Unit = { dst = World.player.loc }
-  def attackPlayer(): Unit = { Combat.dealDamage(this, World.player) }
+  def attackPlayer(): Unit = { dst = World.player.loc }
   def randMov(roomNum: Int): Unit = {
 
     if (loc == dst) {

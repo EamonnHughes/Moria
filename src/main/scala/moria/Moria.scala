@@ -44,14 +44,15 @@ class Moria extends PApplet {
     if (currentTime - time > tTime * 1000) {
       time = currentTime
       if (navigateObject(World.player) || doneNothing || doAttack) {
-        World.enemies.foreach(enemy => navigateObject(enemy))
         World.enemies.foreach(enemy => enemy.chooseState())
         doneNothing = false
         doAttack = false
+        World.enemies.foreach(enemy => navigateObject(enemy))
       }
 
     }
     World.checkForDead()
+    World.player.checkForDead()
   }
 
   override def mousePressed(event: MouseEvent): Unit = {
