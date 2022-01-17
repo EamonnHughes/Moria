@@ -73,7 +73,10 @@ class Moria extends PApplet {
 
     var newLoc = Location(nObj.loc.x + movX, nObj.loc.y + movY)
 
-    if (World.findThing(newLoc) == null || newLoc == nObj.loc) {
+    if (
+      World.findThing(newLoc) == null || newLoc == nObj.loc || World.rooms
+        .exists(room => room.isInside(newLoc.x * 16, newLoc.y * 16))
+    ) {
       nObj.loc = newLoc
     } else {
       World.findThing(newLoc) match {
