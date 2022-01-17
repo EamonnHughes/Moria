@@ -46,12 +46,9 @@ class Moria extends PApplet {
     val currentTime = System.currentTimeMillis
     if (currentTime - time > tTime * 1000) {
       time = currentTime
-      if (navigateObject(World.player) || doneNothing) {
+      if (navigateObject(World.player) || doneNothing || doAttack) {
         World.enemies.foreach(enemy => navigateObject(enemy))
         doneNothing = false
-      }
-      if (doAttack) {
-        dealDamage(World.player, World.enemies(0))
         doAttack = false
       }
 
@@ -80,7 +77,9 @@ class Moria extends PApplet {
       nObj.loc = newLoc
     } else {
       doAttack = true
+      dealDamage(World.player, World.enemies(nextFoe(nObj, newLoc)))
       newLoc = nObj.loc
+      doAttack = true
     }
 
     movX != 0 || movY != 0
@@ -96,6 +95,17 @@ class Moria extends PApplet {
 
     }
     roomNum
+  }
+  def nextFoe(nObj: NavigatingObject, newLoc: Location): Int = {
+    var foeNum = 0
+    for (i <- 0 until World.enemies.length) {
+      var eEnemy = World.enemies(i)
+      if (eEnemy.loc == newLoc) {
+        foeNum = i
+      }
+
+    }
+    foeNum
   }
   def dealDamage(
       attacker: NavigatingObject with DealsDamage,
