@@ -20,7 +20,11 @@ case class Enemy(
   def draw(p: PApplet): Unit = {
     p.fill(255, 0, 0)
     p.rect(loc.x * 16, loc.y * 16, 16, 16)
-    p.fill(255, 255, 0)
+    p.fill(
+      255 * (maxHealth - health) / maxHealth,
+      (255 * (health)) / maxHealth,
+      0
+    )
     p.rect(loc.x * 16, loc.y * 16, 16 * health / maxHealth, -10)
     p.fill(255, 0, 0)
     p.text(health, loc.x * 16, loc.y * 16)
