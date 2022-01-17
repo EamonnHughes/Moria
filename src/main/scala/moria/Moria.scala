@@ -53,6 +53,7 @@ class Moria extends PApplet {
       }
 
     }
+    checkForDead()
   }
 
   override def mousePressed(event: MouseEvent): Unit = {
@@ -96,14 +97,15 @@ class Moria extends PApplet {
     roomNum
   }
   def nextFoe(nObj: NavigatingObject, newLoc: Location): Int = {
-    var foeNum = 0
+    var enNum = 0
     for (i <- 0 until World.enemies.length) {
       var eEnemy = World.enemies(i)
       if (eEnemy.loc == newLoc) {
-        foeNum = i
+        enNum = i
       }
 
     }
+    var foeNum = enNum
     foeNum
   }
   def dealDamage(
@@ -117,6 +119,12 @@ class Moria extends PApplet {
       println(defender.health)
     }
   }
+  def checkForDead(): Unit = {
+
+    World.enemies = World.enemies.filter(enemy => enemy.health > 0)
+
+  }
+
 }
 
 object Moria extends App {
