@@ -79,7 +79,6 @@ class Moria extends PApplet {
       doAttack = true
       dealDamage(World.player, World.enemies(nextFoe(nObj, newLoc)))
       newLoc = nObj.loc
-      doAttack = true
     }
 
     movX != 0 || movY != 0

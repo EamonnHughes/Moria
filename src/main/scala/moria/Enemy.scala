@@ -15,10 +15,16 @@ case class Enemy(
     with HasHealth
     with DealsDamage
     with Thing {
+  val maxHealth = health
 
   def draw(p: PApplet): Unit = {
     p.fill(255, 0, 0)
     p.rect(loc.x * 16, loc.y * 16, 16, 16)
+    p.fill(255, 255, 0)
+    p.rect(loc.x * 16, loc.y * 16, 16 * health / maxHealth, -10)
+    p.fill(255, 0, 0)
+    p.text(health, loc.x * 16, loc.y * 16)
+
   }
   def Patrol(): Unit = {}
   def followPlayer(): Unit = {}
