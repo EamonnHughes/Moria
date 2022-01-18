@@ -56,6 +56,7 @@ class Moria extends PApplet {
     }
     World.checkForDead()
     World.player.checkForDead()
+
   }
 
   override def mousePressed(event: MouseEvent): Unit = {

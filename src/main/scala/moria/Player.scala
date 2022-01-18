@@ -13,6 +13,7 @@ case class Player(
 ) extends NavigatingObject
     with HasHealth
     with DealsDamage {
+
   def draw(p: PApplet): Unit = {
 
     p.fill(0, 255, 0)
@@ -33,13 +34,13 @@ case class Player(
     p.textSize(12.0f)
     p.text(health, 0, 496)
   }
-
   def pClick(posX: Int, posY: Int): Unit = {
     if (World.rooms.exists(r => r.isInside(posX, posY))) {
-      dst.x = ((posX / 16).floor.toInt)
-      dst.y = ((posY / 16).ceil.toInt)
+      if (World.findThing(Location(posX, posY)) == null) {
+        dst.x = ((posX / 16).floor.toInt)
+        dst.y = ((posY / 16).ceil.toInt)
+      }
     }
-
   }
 
   def pressKey(keyCode: Int): Unit = {
