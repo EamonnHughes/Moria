@@ -9,7 +9,6 @@ class Moria extends PApplet {
   val BoardWidth = 1024
   val BoardHeight = 512
   var doneNothing = false
-  var doAttack = false
 
   override def settings(): Unit = {
     size(BoardWidth, BoardHeight)
@@ -43,11 +42,15 @@ class Moria extends PApplet {
     val currentTime = System.currentTimeMillis
     if (currentTime - time > tTime * 1000) {
       time = currentTime
-      if (navigateObject(World.player) || doneNothing || doAttack) {
+      if (
+        Navigation.navigateObject(
+          World.player
+        ) || doneNothing || Navigation.doAttack
+      ) {
         World.enemies.foreach(enemy => enemy.chooseState())
         doneNothing = false
-        doAttack = false
-        World.enemies.foreach(enemy => navigateObject(enemy))
+        Navigation.doAttack = false
+        World.enemies.foreach(enemy => Navigation.navigateObject(enemy))
       }
 
     }
@@ -64,32 +67,6 @@ class Moria extends PApplet {
     if (key == ' ') {
       doneNothing = true
     }
-  }
-
-  def navigateObject(nObj: NavigatingObject with DealsDamage): Boolean = {
-
-    var movX = math.signum(nObj.dst.x - nObj.loc.x)
-    var movY = math.signum(nObj.dst.y - nObj.loc.y)
-
-    var newLoc = Location(nObj.loc.x + movX, nObj.loc.y + movY)
-
-    if (
-      World.findThing(newLoc) == null || newLoc == nObj.loc || World.rooms
-        .exists(room => room.isInside(newLoc.x * 16, newLoc.y * 16))
-    ) {
-      nObj.loc = newLoc
-    } else {
-      World.findThing(newLoc) match {
-        case hh: NavigatingObject with HasHealth =>
-          Combat.dealDamage(nObj, hh)
-          if (nObj == Player) { doAttack = true }
-        case _ =>
-      }
-
-      newLoc = nObj.loc
-    }
-
-    movX != 0 || movY != 0
   }
 
 }
