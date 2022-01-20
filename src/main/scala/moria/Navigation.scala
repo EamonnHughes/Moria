@@ -18,8 +18,15 @@ object Navigation {
     } else {
       World.findThing(newLoc) match {
         case hh: NavigatingObject with HasHealth =>
-          Combat.dealDamage(nObj, hh)
-          if (nObj == Player) { doAttack = true }
+          if (
+            nObj.isInstanceOf[Enemy] && World.findThing(newLoc) == World.player
+          ) {
+            Combat.dealDamage(nObj, hh)
+
+          } else if (nObj == Player) {
+            doAttack = true
+            Combat.dealDamage(nObj, hh)
+          }
         case _ =>
       }
 
