@@ -9,12 +9,25 @@ class Moria extends PApplet {
   val BoardWidth = 1024
   val BoardHeight = 512
   var doneNothing = false
+  /*var pCamera = camera(
+    BoardWidth / 2.toFloat,
+    BoardHeight / 2.toFloat,
+    ((height / 2.0) / Math.tan(Math.PI * 30.0 / 180.0)).toFloat,
+    World.player.loc.x * 16 + 8.toFloat,
+    World.player.loc.y * 16 + 8.toFloat,
+    0.0f,
+    0.0f,
+    1.0f,
+    0.0f
+  )*/
 
   override def settings(): Unit = {
     size(BoardWidth, BoardHeight)
+
   }
 
   override def draw(): Unit = {
+
     background(100, 100, 100)
     fill(255, 255, 255)
 
@@ -28,7 +41,6 @@ class Moria extends PApplet {
     fill(255, 255, 0, 75)
 
     rect((mouseX / 16).ceil * 16, (mouseY / 16).ceil * 16, 16, 16)
-
     Update(.2f)
 
   }
