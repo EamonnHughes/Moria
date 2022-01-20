@@ -5,7 +5,7 @@ import processing.event.MouseEvent
 
 class Moria extends PApplet {
 
-  var time = System.currentTimeMillis
+  var time: Long = System.currentTimeMillis
   val BoardWidth = 1024
   val BoardHeight = 512
   var doneNothing = false
