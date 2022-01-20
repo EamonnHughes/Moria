@@ -5,8 +5,8 @@ object Navigation {
   var doAttack = false
   def navigateObject(nObj: NavigatingObject with DealsDamage): Boolean = {
 
-    var movX = math.signum(nObj.dst.x - nObj.loc.x)
-    var movY = math.signum(nObj.dst.y - nObj.loc.y)
+    val movX = math.signum(nObj.dst.x - nObj.loc.x)
+    val movY = math.signum(nObj.dst.y - nObj.loc.y)
 
     var newLoc = Location(nObj.loc.x + movX, nObj.loc.y + movY)
 

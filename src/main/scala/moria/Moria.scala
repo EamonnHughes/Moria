@@ -32,7 +32,7 @@ class Moria extends PApplet {
     }
 
     fill(255, 255, 0, 75)
-    rect(((mouseX / 16).ceil) * 16, ((mouseY / 16).ceil) * 16, 16, 16)
+    rect((mouseX / 16.ceil) * 16, (mouseY / 16).ceil * 16, 16, 16)
 
     Update(.2f)
 

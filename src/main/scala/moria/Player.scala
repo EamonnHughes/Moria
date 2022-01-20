@@ -20,13 +20,13 @@ case class Player(
     p.rect(loc.x * 16, loc.y * 16, 16, 16)
     p.fill(
       255 * (maxHealth - health) / maxHealth,
-      (255 * (health)) / maxHealth,
+      (255 * health) / maxHealth,
       0
     )
     p.rect(loc.x * 16, loc.y * 16, 16 * health / maxHealth, 4)
     p.fill(
       255 * (maxHealth - health) / maxHealth,
-      (255 * (health)) / maxHealth,
+      (255 * health) / maxHealth,
       0
     )
     p.rect(0, 512, 16, -(64 * health / maxHealth))
@@ -37,8 +37,8 @@ case class Player(
   def pClick(posX: Int, posY: Int): Unit = {
     if (World.rooms.exists(r => r.isInside(posX, posY))) {
       if (World.findThing(Location(posX, posY)) == null) {
-        dst.x = ((posX / 16).floor.toInt)
-        dst.y = ((posY / 16).ceil.toInt)
+        dst.x = (posX / 16).floor.toInt
+        dst.y = (posY / 16).ceil.toInt
       }
     }
   }

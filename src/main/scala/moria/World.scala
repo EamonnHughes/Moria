@@ -18,8 +18,8 @@ object World {
 
   def roomIsIn(nObj: NavigatingObject): Int = {
     var roomNum = 0
-    for (i <- 0 until World.rooms.length) {
-      var rRoom = World.rooms(i)
+    for (i <- World.rooms.indices) {
+      val rRoom = World.rooms(i)
       if (rRoom.isInside(nObj.loc.x, nObj.loc.y)) {
         roomNum = i
       }
@@ -27,16 +27,16 @@ object World {
     }
     roomNum
   }
-  def nextFoe(nObj: NavigatingObject, newLoc: Location): Int = {
+  def nextFoe(newLoc: Location): Int = {
     var enNum = 0
-    for (i <- 0 until World.enemies.length) {
-      var eEnemy = World.enemies(i)
+    for (i <- World.enemies.indices) {
+      val eEnemy = World.enemies(i)
       if (eEnemy.loc == newLoc) {
         enNum = i
       }
 
     }
-    var foeNum = enNum
+    val foeNum = enNum
     foeNum
   }
   def checkForDead(): Unit = {

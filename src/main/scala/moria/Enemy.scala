@@ -22,7 +22,7 @@ case class Enemy(
     p.rect(loc.x * 16, loc.y * 16, 16, 16)
     p.fill(
       255 * (maxHealth - health) / maxHealth,
-      (255 * (health)) / maxHealth,
+      (255 * health) / maxHealth,
       0
     )
     p.rect(loc.x * 16, loc.y * 16, 16 * health / maxHealth, 4)
@@ -49,12 +49,12 @@ case class Enemy(
 
     if (loc == dst) {
 
-      dst.x = (Random
-        .nextInt(World.rooms(roomNum).lX)) + World
+      dst.x = Random
+        .nextInt(World.rooms(roomNum).lX) + World
         .rooms(roomNum)
         .posX
-      dst.y = (Random
-        .nextInt(World.rooms(roomNum).lY)) + World
+      dst.y = Random
+        .nextInt(World.rooms(roomNum).lY) + World
         .rooms(roomNum)
         .posY
 
