@@ -45,16 +45,18 @@ class Moria extends PApplet {
       if (
         Navigation.navigateObject(
           World.player
-        ) || doneNothing || Navigation.doAttack
+        ) || doneNothing
       ) {
         World.enemies.foreach(enemy => enemy.chooseState())
 
         World.enemies.foreach(enemy => Navigation.navigateObject(enemy))
-        doneNothing = false
-        Navigation.doAttack = false
+
       }
       time = currentTime
+      doneNothing = false
+      Navigation.doAttack = false
     }
+
     World.checkForDead()
     World.player.checkForDead()
 

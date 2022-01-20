@@ -9,9 +9,11 @@ object Combat {
   ): Unit = {
     var rToHit = Random.nextInt(100) - attacker.toHitMod
     println(rToHit)
+
     if (rToHit <= defender.ac) {
       defender.health -= attacker.damageDealt
       println(defender.health)
     }
+
   }
 }

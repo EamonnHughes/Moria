@@ -22,20 +22,24 @@ object Navigation {
             nObj.isInstanceOf[Enemy] && World.findThing(newLoc) == World.player
           ) {
             Combat.dealDamage(nObj, hh)
+            newLoc = nObj.loc
 
           }
           if (nObj == Player) {
-            doAttack = true
+
             Combat.dealDamage(nObj, hh)
+
+            newLoc = nObj.loc
+            doAttack = true
 
           }
         case _ =>
+          doAttack = false
       }
 
-      newLoc = nObj.loc
     }
 
-    movX != 0 || movY != 0
+    movX != 0 || movY != 0 || doAttack
   }
 
 }
