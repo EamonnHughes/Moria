@@ -35,19 +35,17 @@ case class Enemy(
       randMov(World.roomIsIn(this))
       println("Random Movement")
     } else if (
-      (World.player.loc.x <= loc.x + 6 || World.player.loc.x >= loc.x - 6) &&
-      (World.player.loc.y <= loc.y + 6 || World.player.loc.y >= loc.y - 6) &&
-      ((World.player.loc.x != loc.x + 1 && World.player.loc.x != loc.x - 1 && World.player.loc.x != loc.x) &&
-      (World.player.loc.y != loc.y + 1 && World.player.loc.y != loc.y - 1 && World.player.loc.y != loc.y))
-    ) {
-      followPlayer()
-      println("Following Player")
-    } else if (
       (World.player.loc.x == loc.x + 1 || World.player.loc.x == loc.x - 1 || World.player.loc.x == loc.x) &&
       (World.player.loc.y == loc.y + 1 || World.player.loc.y == loc.y - 1 || World.player.loc.y == loc.y)
     ) {
       attackPlayer()
       println("Attacking Player")
+    } else if (
+      (World.player.loc.x <= loc.x + 6 || World.player.loc.x >= loc.x - 6 || World.player.loc.x == loc.x) &&
+      (World.player.loc.y <= loc.y + 6 || World.player.loc.y >= loc.y - 6 || World.player.loc.y == loc.y)
+    ) {
+      followPlayer()
+      println("Following Player")
     }
   }
   def Patrol(): Unit = {}

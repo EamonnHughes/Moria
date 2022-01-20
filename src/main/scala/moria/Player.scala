@@ -51,7 +51,7 @@ case class Player(
   }
   def checkForDead(): Unit = {
     if (health <= 0) {
-      System.exit(0)
+      //System.exit(0)
     }
   }
 
