@@ -27,6 +27,7 @@ object Navigation {
           if (nObj == Player) {
             doAttack = true
             Combat.dealDamage(nObj, hh)
+
           }
         case _ =>
       }

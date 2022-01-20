@@ -41,18 +41,19 @@ class Moria extends PApplet {
   def Update(tTime: Float): Unit = {
     val currentTime = System.currentTimeMillis
     if (currentTime - time > tTime * 1000) {
-      time = currentTime
+
       if (
         Navigation.navigateObject(
           World.player
         ) || doneNothing || Navigation.doAttack
       ) {
         World.enemies.foreach(enemy => enemy.chooseState())
+
+        World.enemies.foreach(enemy => Navigation.navigateObject(enemy))
         doneNothing = false
         Navigation.doAttack = false
-        World.enemies.foreach(enemy => Navigation.navigateObject(enemy))
       }
-
+      time = currentTime
     }
     World.checkForDead()
     World.player.checkForDead()
