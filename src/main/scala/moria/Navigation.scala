@@ -23,7 +23,8 @@ object Navigation {
           ) {
             Combat.dealDamage(nObj, hh)
 
-          } else if (nObj == Player) {
+          }
+          if (nObj == Player) {
             doAttack = true
             Combat.dealDamage(nObj, hh)
           }
