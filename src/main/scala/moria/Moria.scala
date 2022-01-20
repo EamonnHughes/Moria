@@ -24,15 +24,10 @@ class Moria extends PApplet {
 
     World.enemies.foreach { enemy => enemy.draw(this) }
     World.player.draw(this)
-    for (i <- 0 until BoardWidth) {
-      line((i * 16) - 16, 0, (i * 16) - 16, BoardHeight)
-    }
-    for (i <- 0 until BoardHeight) {
-      line(0, (i * 16) - 16, BoardWidth, (i * 16) - 16)
-    }
 
     fill(255, 255, 0, 75)
-    rect((mouseX / 16.ceil) * 16, (mouseY / 16).ceil * 16, 16, 16)
+
+    rect((mouseX / 16).ceil * 16, (mouseY / 16).ceil * 16, 16, 16)
 
     Update(.2f)
 
