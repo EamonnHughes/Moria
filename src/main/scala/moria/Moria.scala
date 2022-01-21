@@ -35,6 +35,8 @@ class Moria extends PApplet {
       room.draw(this)
     }
 
+    strokeWeight(1)
+
     World.enemies.foreach { enemy => enemy.draw(this) }
     World.player.draw(this)
 
@@ -47,13 +49,14 @@ class Moria extends PApplet {
 
   def Update(tTime: Float): Unit = {
     val currentTime = System.currentTimeMillis
-    if (currentTime - time > tTime * 1000) {
 
-      if (
-        Navigation.navigateObject(
-          World.player
-        ) || doneNothing
-      ) {
+    if (currentTime - time > tTime * 1000) {
+      val moved = Navigation.navigateObject(
+        World.player
+      )
+
+      if (moved || doneNothing) {
+        println(s"Moved $moved done nothing $doneNothing")
         World.enemies.foreach(enemy => enemy.chooseState())
 
         World.enemies.foreach(enemy => Navigation.navigateObject(enemy))
@@ -61,7 +64,7 @@ class Moria extends PApplet {
       }
       time = currentTime
       doneNothing = false
-      Navigation.doAttack = false
+
     }
 
     World.checkForDead()
