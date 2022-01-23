@@ -16,12 +16,17 @@ case class Player(
 
   def draw(p: PApplet): Unit = {
 
+    val pImg = p.loadImage("src/main/Resources/Crappyperson.png")
+
     p.fill(0, 255, 0)
     p.rect(loc.x * 16, loc.y * 16, 16, 16)
+    p.image(pImg, loc.x * 16, loc.y * 16, 16, 16)
+
     p.fill(
       255 * (maxHealth - health) / maxHealth,
       (255 * health) / maxHealth,
-      0
+      0,
+      50
     )
     p.rect(loc.x * 16, loc.y * 16, 16 * health / maxHealth, 4)
     p.fill(
