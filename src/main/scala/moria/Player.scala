@@ -37,17 +37,16 @@ case class Player(
   def pClick(posX: Int, posY: Int): Unit = {
     if (World.rooms.exists(r => r.isInside(posX, posY))) {
       if (World.findThing(Location(posX, posY)) == null) {
-        dst.x = (posX / 16).floor.toInt
-        dst.y = (posY / 16).ceil.toInt
+        dst = Location((posX / 16).floor.toInt, (posY / 16).ceil.toInt)
       }
     }
   }
 
   def pressKey(keyCode: Int): Unit = {
-    if (keyCode == UP) { dst.x = loc.x; dst.y = loc.y - 1 }
-    if (keyCode == DOWN) { dst.x = loc.x; dst.y = loc.y + 1 }
-    if (keyCode == LEFT) { dst.x = loc.x - 1; dst.y = loc.y }
-    if (keyCode == RIGHT) { dst.x = loc.x + 1; dst.y = loc.y }
+    if (keyCode == UP) { dst = Location(loc.x, loc.y - 1) }
+    if (keyCode == DOWN) { dst = Location(loc.x, loc.y + 1) }
+    if (keyCode == LEFT) { dst = Location(loc.x - 1, loc.y) }
+    if (keyCode == RIGHT) { dst = Location(loc.x + 1, loc.y) }
   }
   def checkForDead(): Unit = {
     if (health <= 0) {

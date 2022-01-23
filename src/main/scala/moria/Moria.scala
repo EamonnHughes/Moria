@@ -10,6 +10,8 @@ class Moria extends PApplet {
   val BoardHeight = 512
   var doneNothing = false
 
+  override def setup(): Unit = {}
+
   override def settings(): Unit = {
     size(BoardWidth, BoardHeight)
 

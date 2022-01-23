@@ -9,6 +9,7 @@ object Navigation {
     var moved = false
 
     var newLoc = Location(nObj.loc.x + movX, nObj.loc.y + movY)
+    if (nObj == World.player) println(s"Nav From ${nObj.loc} to ${newLoc}")
 
     if (
       (World.findThing(newLoc) == null || newLoc == nObj.loc) && World.rooms
@@ -16,6 +17,7 @@ object Navigation {
     ) {
       moved = newLoc != nObj.loc
       nObj.loc = newLoc
+      if (nObj == World.player) println(s"Moved $moved")
     } else {
       World.findThing(newLoc) match {
         case hh: NavigatingObject with HasHealth =>

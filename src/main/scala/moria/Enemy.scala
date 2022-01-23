@@ -2,8 +2,6 @@ package moria
 
 import processing.core.PApplet
 
-import scala.util.Random
-
 case class Enemy(
     var loc: Location,
     var dst: Location,
@@ -48,15 +46,15 @@ case class Enemy(
   def randMov(roomNum: Int): Unit = {
 
     if (loc == dst) {
-
-      dst.x = Random
-        .nextInt(World.rooms(roomNum).lX) + World
-        .rooms(roomNum)
-        .posX
-      dst.y = Random
-        .nextInt(World.rooms(roomNum).lY) + World
-        .rooms(roomNum)
-        .posY
+//
+//      dst.x = Random
+//        .nextInt(World.rooms(roomNum).lX) + World
+//        .rooms(roomNum)
+//        .posX
+//      dst.y = Random
+//        .nextInt(World.rooms(roomNum).lY) + World
+//        .rooms(roomNum)
+//        .posY
 
     }
   }
