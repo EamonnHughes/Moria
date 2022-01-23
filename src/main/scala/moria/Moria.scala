@@ -23,6 +23,7 @@ class Moria extends PApplet {
     fill(255, 255, 255)
 
     if (World.startUp) {
+      fill(255, 255, 0)
       rect(0, 0, 1024, 512)
 
       fill(0, 0, 0)
