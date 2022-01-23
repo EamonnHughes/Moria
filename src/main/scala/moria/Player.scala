@@ -49,6 +49,7 @@ case class Player(
       50
     )
     p.rect(loc.x * 16, loc.y * 16, 16 * health / maxHealth, 4)
+
     p.fill(
       255 * (maxHealth - health) / maxHealth,
       (255 * health) / maxHealth,

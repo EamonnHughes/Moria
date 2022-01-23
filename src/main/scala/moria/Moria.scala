@@ -25,7 +25,18 @@ class Moria extends PApplet {
     if (World.startUp) {
       rect(0, 0, 1024, 512)
 
-      fill(0)
+      fill(0, 0, 0)
+      text("select race", 256, 190)
+      rect(256, 200, 32, 16)
+      rect(300, 200, 32, 16)
+      rect(344, 200, 32, 16)
+      fill(255, 255, 255)
+      textSize(8)
+      text("Human", 256, 210)
+      text("Dwarf", 300, 210)
+      text("Elf", 344, 210)
+
+      fill(0, 0, 0)
       text("select class", 256, 256)
       rect(256, 266, 32, 16)
       rect(300, 266, 32, 16)
