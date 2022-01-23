@@ -1,4 +1,5 @@
 package moria
+
 import processing.core.PConstants._
 import processing.core._
 
@@ -9,10 +10,29 @@ case class Player(
     var ac: Int,
     var toHitMod: Int,
     var damageDealt: Int,
-    var maxHealth: Int
+    var maxHealth: Int,
+    var bStrength: Int,
+    var bFinesse: Int,
+    var bFortitude: Int,
+    var bEnergy: Int,
+    var bIntelligence: Int,
+    var bPersuasion: Int,
+    var bIntimidation: Int,
+    var bRationalism: Int,
+    var bPerception: Int,
+    var Strength: Int,
+    var Finesse: Int,
+    var Fortitude: Int,
+    var Energy: Int,
+    var Intelligence: Int,
+    var Persuasion: Int,
+    var Intimidation: Int,
+    var Rationalism: Int,
+    var Perception: Int
 ) extends NavigatingObject
     with HasHealth
-    with DealsDamage {
+    with DealsDamage
+    with Stats {
 
   def draw(p: PApplet): Unit = {
 
@@ -52,6 +72,7 @@ case class Player(
     if (keyCode == DOWN) { dst = Location(loc.x, loc.y + 1) }
     if (keyCode == LEFT) { dst = Location(loc.x - 1, loc.y) }
     if (keyCode == RIGHT) { dst = Location(loc.x + 1, loc.y) }
+
   }
   def checkForDead(): Unit = {
     if (health <= 0) {

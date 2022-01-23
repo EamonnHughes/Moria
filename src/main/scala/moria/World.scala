@@ -1,16 +1,44 @@
 package moria
 
 object World {
+
+  var isMenu = false
   var rooms = List(
     Room(2, 2, 32, 16),
     Room(34, 4, 4, 1),
-    Room(38, 2, 32, 16)
+    Room(38, 2, 8, 8)
   )
   var enemies = List(
     Enemy(Location(2, 2), Location(2, 2), 5, 45, 10, 1, 5),
     Enemy(Location(8, 8), Location(8, 8), 5, 45, 10, 1, 5)
   )
-  var player: Player = Player(Location(4, 4), Location(4, 4), 10, 50, 15, 2, 10)
+  var player: Player = Player(
+    Location(4, 4),
+    Location(4, 4),
+    10,
+    50,
+    15,
+    2,
+    10,
+    10,
+    10,
+    10,
+    10,
+    10,
+    10,
+    10,
+    10,
+    10,
+    16,
+    16,
+    16,
+    16,
+    16,
+    16,
+    16,
+    16,
+    16
+  )
 
   def things: List[Thing] = player :: enemies
 

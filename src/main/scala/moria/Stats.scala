@@ -9,6 +9,7 @@ trait Stats {
   var bPersuasion: Int
   var bIntimidation: Int
   var bRationalism: Int
+  var bPerception: Int
   var Strength: Int
   var Finesse: Int
   var Fortitude: Int
@@ -17,5 +18,6 @@ trait Stats {
   var Persuasion: Int
   var Intimidation: Int
   var Rationalism: Int
+  var Perception: Int
 
 }

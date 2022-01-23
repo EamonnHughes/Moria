@@ -1,7 +1,7 @@
 package moria
 
 import processing.core._
-import processing.event.MouseEvent
+import processing.event.{KeyEvent, MouseEvent}
 
 class Moria extends PApplet {
 
@@ -34,7 +34,21 @@ class Moria extends PApplet {
     fill(255, 255, 0, 75)
 
     rect((mouseX / 16).ceil * 16, (mouseY / 16).ceil * 16, 16, 16)
-    Update(.2f)
+    if (World.isMenu) {
+      println("Menu")
+      rect(4, 4, 1016, 504)
+      fill(255, 255, 0)
+      rect(8, 8, 496, 496)
+      rect(520, 8, 496, 496)
+      fill(0, 0, 0)
+      text(
+        s" STR: ${World.player.Strength}(${World.player.bStrength}) \n FIN: ${World.player.Finesse}(${World.player.bFinesse}) \n FRT: ${World.player.Fortitude}(${World.player.bFortitude}) \n ENG: ${World.player.Energy}(${World.player.bEnergy}) \n INT: ${World.player.Intelligence}(${World.player.bIntelligence}) \n PRS: ${World.player.Persuasion}(${World.player.bPersuasion}) \n IMD: ${World.player.Intimidation}(${World.player.bIntimidation}) \n RSM: ${World.player.Rationalism}(${World.player.bRationalism}) \n PCP: ${World.player.Perception}(${World.player.bPerception})",
+        540,
+        28
+      )
+    } else {
+      Update(.2f)
+    }
 
   }
 
@@ -67,11 +81,13 @@ class Moria extends PApplet {
     World.player.pClick(mouseX, mouseY)
   }
 
-  override def keyPressed(): Unit = {
+  override def keyPressed(event: KeyEvent): Unit = {
     World.player.pressKey(keyCode)
     if (key == ' ') {
       doneNothing = true
     }
+    if (key == 'i' && !World.isMenu) { World.isMenu = true }
+    else if (key == 'i' && World.isMenu) { World.isMenu = false }
   }
 
 }
