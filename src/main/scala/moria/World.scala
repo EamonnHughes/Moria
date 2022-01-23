@@ -21,7 +21,7 @@ object World {
     Location(4, 4),
     10,
     50,
-    15,
+    player.Fortitude + 1,
     2,
     10,
     10,
