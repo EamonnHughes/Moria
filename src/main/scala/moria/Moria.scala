@@ -117,6 +117,7 @@ class Moria extends PApplet {
     if (key == 'i' && !World.isMenu) { World.isMenu = true }
     else if (key == 'i' && World.isMenu) { World.isMenu = false }
     if (key == 'c') { World.startUp = false }
+    if (key == 'g') { World.gear.head.showInfo() }
   }
 
 }
