@@ -22,32 +22,48 @@ class Moria extends PApplet {
     background(100, 100, 100)
     fill(255, 255, 255)
 
-    World.rooms.foreach { room =>
-      room.draw(this)
-    }
+    if (World.startUp) {
+      rect(0, 0, 1024, 512)
 
-    stroke(0, 0, 0)
-
-    World.enemies.foreach { enemy => enemy.draw(this) }
-    World.player.draw(this)
-
-    fill(255, 255, 0, 75)
-
-    rect((mouseX / 16).ceil * 16, (mouseY / 16).ceil * 16, 16, 16)
-    if (World.isMenu) {
-      println("Menu")
-      rect(4, 4, 1016, 504)
-      fill(255, 255, 0)
-      rect(8, 8, 496, 496)
-      rect(520, 8, 496, 496)
-      fill(0, 0, 0)
-      text(
-        s" STR: ${World.player.Strength}(${World.player.bStrength}) \n FIN: ${World.player.Finesse}(${World.player.bFinesse}) \n FRT: ${World.player.Fortitude}(${World.player.bFortitude}) \n ENG: ${World.player.Energy}(${World.player.bEnergy}) \n INT: ${World.player.Intelligence}(${World.player.bIntelligence}) \n PRS: ${World.player.Persuasion}(${World.player.bPersuasion}) \n IMD: ${World.player.Intimidation}(${World.player.bIntimidation}) \n RSM: ${World.player.Rationalism}(${World.player.bRationalism}) \n PCP: ${World.player.Perception}(${World.player.bPerception})",
-        540,
-        28
-      )
+      fill(0)
+      text("select class", 256, 256)
+      rect(256, 266, 32, 16)
+      rect(300, 266, 32, 16)
+      rect(344, 266, 32, 16)
+      fill(255, 255, 255)
+      textSize(8)
+      text("Warrior", 256, 276)
+      text("Rogue", 300, 276)
+      text("Mage", 344, 276)
     } else {
-      Update(.2f)
+
+      World.rooms.foreach { room =>
+        room.draw(this)
+      }
+
+      stroke(0, 0, 0)
+
+      World.enemies.foreach { enemy => enemy.draw(this) }
+      World.player.draw(this)
+
+      fill(255, 255, 0, 75)
+
+      rect((mouseX / 16).ceil * 16, (mouseY / 16).ceil * 16, 16, 16)
+      if (World.isMenu) {
+        println("Menu")
+        rect(4, 4, 1016, 504)
+        fill(255, 255, 0)
+        rect(8, 8, 496, 496)
+        rect(520, 8, 496, 496)
+        fill(0, 0, 0)
+        text(
+          s" STR: ${World.player.Strength}(${World.player.bStrength}) \n FIN: ${World.player.Finesse}(${World.player.bFinesse}) \n FRT: ${World.player.Fortitude}(${World.player.bFortitude}) \n ENG: ${World.player.Energy}(${World.player.bEnergy}) \n INT: ${World.player.Intelligence}(${World.player.bIntelligence}) \n PRS: ${World.player.Persuasion}(${World.player.bPersuasion}) \n IMD: ${World.player.Intimidation}(${World.player.bIntimidation}) \n RSM: ${World.player.Rationalism}(${World.player.bRationalism}) \n PCP: ${World.player.Perception}(${World.player.bPerception})",
+          540,
+          28
+        )
+      } else {
+        Update(.2f)
+      }
     }
 
   }
@@ -88,6 +104,7 @@ class Moria extends PApplet {
     }
     if (key == 'i' && !World.isMenu) { World.isMenu = true }
     else if (key == 'i' && World.isMenu) { World.isMenu = false }
+    if (key == 'c') { World.startUp = false }
   }
 
 }

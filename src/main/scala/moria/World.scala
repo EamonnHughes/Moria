@@ -3,6 +3,7 @@ package moria
 object World {
 
   var isMenu = false
+  var startUp = true
   var rooms = List(
     Room(2, 2, 32, 16),
     Room(34, 4, 4, 1),
