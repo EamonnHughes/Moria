@@ -26,7 +26,7 @@ class Moria extends PApplet {
       room.draw(this)
     }
 
-    strokeWeight(1)
+    stroke(0, 0, 0)
 
     World.enemies.foreach { enemy => enemy.draw(this) }
     World.player.draw(this)

@@ -4,7 +4,7 @@ import processing.core._
 
 case class Room(posX: Int, posY: Int, lX: Int, lY: Int) {
   def draw(p: PApplet): Unit = {
-    p.strokeWeight(0)
+    p.noStroke()
     p.rect(posX * 16, posY * 16, lX * 16, lY * 16)
 
   }

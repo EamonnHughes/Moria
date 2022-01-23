@@ -2,7 +2,9 @@ package moria
 
 object World {
   var rooms = List(
-    Room(2, 2, 32, 16)
+    Room(2, 2, 32, 16),
+    Room(34, 4, 4, 1),
+    Room(38, 2, 32, 16)
   )
   var enemies = List(
     Enemy(Location(2, 2), Location(2, 2), 5, 45, 10, 1, 5),
