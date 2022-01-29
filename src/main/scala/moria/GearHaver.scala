@@ -1,3 +1,5 @@
 package moria
 
-trait GearHaver {}
+trait GearHaver {
+  var Helm: gearItem
+}
