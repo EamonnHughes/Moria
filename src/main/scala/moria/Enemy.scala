@@ -18,7 +18,7 @@ case class Enemy(
   def draw(p: PApplet): Unit = {
     val eImg = p.loadImage("src/main/Resources/Crappyperson.png")
 
-    p.fill(255, 0, 0)
+    p.fill(255, 0, 0, 5)
     p.rect(loc.x * 16, loc.y * 16, 16, 16)
     p.image(eImg, loc.x * 16, loc.y * 16, 16, 16)
     p.fill(
