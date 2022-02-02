@@ -93,6 +93,9 @@ class Moria extends PApplet {
         World.enemies.foreach(enemy => enemy.chooseState())
 
         World.enemies.foreach(enemy => SimpleNavigation.navigateObject(enemy))
+        World.projectilesList.foreach(projectile =>
+          SimpleNavigation.navigateObject(projectile)
+        )
 
       }
       time = currentTime
