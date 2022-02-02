@@ -84,7 +84,7 @@ class Moria extends PApplet {
     val currentTime = System.currentTimeMillis
 
     if (currentTime - time > tTime * 1000) {
-      val moved = Navigation.navigateObject(
+      val moved = SimpleNavigation.navigateObject(
         World.player
       )
 
@@ -92,7 +92,7 @@ class Moria extends PApplet {
         println(s"Moved $moved done nothing $doneNothing")
         World.enemies.foreach(enemy => enemy.chooseState())
 
-        World.enemies.foreach(enemy => Navigation.navigateObject(enemy))
+        World.enemies.foreach(enemy => SimpleNavigation.navigateObject(enemy))
 
       }
       time = currentTime

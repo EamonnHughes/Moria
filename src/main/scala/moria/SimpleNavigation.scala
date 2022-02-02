@@ -1,6 +1,6 @@
 package moria
 
-object Navigation {
+object SimpleNavigation {
 
   def navigateObject(nObj: NavigatingObject with DealsDamage): Boolean = {
 
