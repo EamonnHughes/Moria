@@ -1,10 +1,10 @@
 package moria
 
 case class Projectile(
-    loc: Location,
-    dst: Location,
-    toHitMod: Int,
-    damageDealt: Int
+    var loc: Location,
+    var dst: Location,
+    var toHitMod: Int,
+    var damageDealt: Int
 ) extends Thing
     with NavigatingObject
     with DealsDamage {}
