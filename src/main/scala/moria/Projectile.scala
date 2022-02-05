@@ -13,7 +13,9 @@ case class Projectile(
 
   def draw(p: PApplet): Unit = {
 
+    val projImg = p.loadImage("src/main/Resources/projectile.png")
+
     p.fill(255, 0, 255)
-    p.rect(loc.x * 16, loc.y * 16, 16, 16)
+    p.image(projImg, loc.x * 16, loc.y * 16, 16, 16)
   }
 }
