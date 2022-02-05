@@ -92,7 +92,7 @@ class Moria extends PApplet {
   def Update(tTime: Float): Unit = {
     val currentTime = System.currentTimeMillis
 
-    if (currentTime - time > tTime * 500 && unpaused) {
+    if (currentTime - time > tTime * 1000 && unpaused) {
       val moved = SimpleNavigation.navigateObject(
         World.player
       )
@@ -105,7 +105,7 @@ class Moria extends PApplet {
         ) :: World.projectilesList
         shoot = false
       }
-      if (currentTime - time > tTime * 500 && unpaused) {
+      if (currentTime - time > tTime * 1000 && unpaused) {
 
         println(s"Moved $moved done nothing $doneNothing")
         World.enemies.foreach(enemy => enemy.chooseState())
