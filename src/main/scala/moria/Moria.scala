@@ -105,7 +105,7 @@ class Moria extends PApplet {
         ) :: World.projectilesList
         shoot = false
       }
-      if (currentTime - time > tTime * 1000 && unpaused) {
+      if (currentTime - time > tTime * 2000 && unpaused) {
 
         println(s"Moved $moved done nothing $doneNothing")
         World.enemies.foreach(enemy => enemy.chooseState())
