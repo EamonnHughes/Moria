@@ -63,6 +63,12 @@ class Moria extends PApplet {
       fill(255, 255, 0, 75)
 
       rect((mouseX / 16).ceil * 16, (mouseY / 16).ceil * 16, 16, 16)
+      ellipse(
+        World.player.loc.x * 16 + 8,
+        World.player.loc.y * 16 + 8,
+        128,
+        128
+      )
       if (World.isMenu) {
         println("Menu")
         rect(4, 4, 1016, 504)
@@ -93,8 +99,8 @@ class Moria extends PApplet {
         World.projectilesList = Projectile(
           World.player.loc,
           World.enemies(0).loc,
-          1,
-          1
+          3,
+          3
         ) :: World.projectilesList
         shoot = false
       }
@@ -135,7 +141,7 @@ class Moria extends PApplet {
     else if (key == 'i' && World.isMenu) { World.isMenu = false }
     if (key == 'c') { World.startUp = false }
     if (key == 'g') { World.gear.head.showInfo() }
-    if (key == 'h') { shoot = true }
+    if (key == 'h' && World.enemies.length > 0) { shoot = true }
   }
 
 }

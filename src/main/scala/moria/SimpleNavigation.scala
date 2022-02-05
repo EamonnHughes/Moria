@@ -37,6 +37,17 @@ object SimpleNavigation {
 
             moved = true
           }
+          if (
+            nObj.isInstanceOf[Projectile] && World.findThing(
+              newLoc
+            ) != World.player
+          ) {
+            Combat.dealDamage(nObj, hh)
+
+            nObj.dst = nObj.loc
+
+            moved = true
+          }
         case _ =>
       }
 
