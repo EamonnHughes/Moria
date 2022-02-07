@@ -10,7 +10,6 @@ class Moria extends PApplet {
   val BoardHeight = 512
   var doneNothing = false
   var shoot = false
-  var unpaused = true
 
   override def setup(): Unit = {}
 
@@ -92,7 +91,7 @@ class Moria extends PApplet {
   def Update(tTime: Float): Unit = {
     val currentTime = System.currentTimeMillis
 
-    if (currentTime - time > tTime * 1000 && unpaused) {
+    if (currentTime - time > tTime * 1000) {
       val moved = SimpleNavigation.navigateObject(
         World.player
       )
@@ -105,7 +104,7 @@ class Moria extends PApplet {
         ) :: World.projectilesList
         shoot = false
       }
-      if (currentTime - time > tTime * 2000 && unpaused) {
+      if (currentTime - time > tTime * 1000 && (moved || doneNothing)) {
 
         println(s"Moved $moved done nothing $doneNothing")
         World.enemies.foreach(enemy => enemy.chooseState())
@@ -142,9 +141,10 @@ class Moria extends PApplet {
     else if (key == 'i' && World.isMenu) { World.isMenu = false }
     if (key == 'c') { World.startUp = false }
     if (key == 'g') { World.gear.head.showInfo() }
-    if (key == 'h' && World.enemies.length > 0) { shoot = true }
-    if (key == 'p' && unpaused) { unpaused = false }
-    else if (key == 'p' && !unpaused) { unpaused = true }
+    if (key == 'h' && World.enemies.length > 0) {
+      shoot = true
+      doneNothing = true
+    }
   }
 
 }
