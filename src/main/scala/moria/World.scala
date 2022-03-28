@@ -16,7 +16,6 @@ object World {
   var gear = List(
     gearItem("Helm", "Iron", 1, 1, 1, 1, "Boring")
   )
-  var projectilesList = List.empty[Projectile]
   var player: Player = Player(
     Location(4, 4),
     Location(4, 4),

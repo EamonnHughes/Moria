@@ -95,27 +95,13 @@ class Moria extends PApplet {
       val moved = SimpleNavigation.navigateObject(
         World.player
       )
-      if (shoot) {
-        World.projectilesList = Projectile(
-          World.player.loc,
-          World.enemies(0).loc,
-          3,
-          3
-        ) :: World.projectilesList
-        shoot = false
-      }
+
       if (currentTime - time > tTime * 1000 && (moved || doneNothing)) {
 
         println(s"Moved $moved done nothing $doneNothing")
         World.enemies.foreach(enemy => enemy.chooseState())
 
         World.enemies.foreach(enemy => SimpleNavigation.navigateObject(enemy))
-
-        if (World.projectilesList.length > 0) {
-          World.projectilesList.foreach(projectile =>
-            projectileNavigate.navigateObject(projectile)
-          )
-        }
 
       }
       time = currentTime
