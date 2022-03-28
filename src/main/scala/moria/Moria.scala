@@ -91,7 +91,7 @@ class Moria extends PApplet {
         World.player.dst
       )
 
-      if (currentTime - time > tTime * 1000 && (moved || doneNothing)) {
+      if (currentTime - time > tTime * 1000) {
 
         println(s"Moved $moved done nothing $doneNothing")
         World.enemies.foreach(enemy => enemy.chooseState())
