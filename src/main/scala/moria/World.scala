@@ -20,25 +20,7 @@ object World {
     50,
     15,
     2,
-    10,
-    10,
-    10,
-    10,
-    10,
-    10,
-    10,
-    10,
-    10,
-    10,
-    16,
-    16,
-    16,
-    16,
-    16,
-    16,
-    16,
-    16,
-    16
+    10
   )
 
   def things: List[Thing] = player :: enemies
@@ -51,7 +33,7 @@ object World {
     var roomNum = 0
     for (i <- World.rooms.indices) {
       val rRoom = World.rooms(i)
-      if (rRoom.isInside(nObj.loc.x, nObj.loc.y)) {
+      if (rRoom.isInside(nObj.loc)) {
         roomNum = i
       }
 

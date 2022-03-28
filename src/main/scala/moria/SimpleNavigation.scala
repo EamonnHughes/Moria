@@ -1,48 +1,20 @@
 package moria
+import scala.collection.mutable
 
 object SimpleNavigation {
 
-  def navigateObject(nObj: NavigatingObject with DealsDamage): Boolean = {
-
-    val movX = math.signum(nObj.dst.x - nObj.loc.x)
-    val movY = math.signum(nObj.dst.y - nObj.loc.y)
-    var moved = false
-
-    var newLoc = Location(nObj.loc.x + movX, nObj.loc.y + movY)
-    if (nObj == World.player) println(s"Nav From ${nObj.loc} to ${newLoc}")
-
-    if (
-      (World.findThing(newLoc) == null || newLoc == nObj.loc) && World.rooms
-        .exists(room => room.isInside(newLoc.x * 16, newLoc.y * 16))
-    ) {
-      moved = newLoc != nObj.loc
-      nObj.loc = newLoc
-      if (nObj == World.player) println(s"Moved $moved")
-    } else {
-      World.findThing(newLoc) match {
-        case hh: NavigatingObject with HasHealth =>
-          if (
-            nObj.isInstanceOf[Enemy] && World.findThing(newLoc) == World.player
-          ) {
-            Combat.dealDamage(nObj, hh)
-
-            nObj.dst = nObj.loc
-
-          }
-          if (nObj == World.player) {
-
-            Combat.dealDamage(nObj, hh)
-
-            nObj.dst = nObj.loc
-
-            moved = true
-          }
-
-        case _ =>
+  def findPath(start: Location, finish: Location): Option[Path] = {
+    val visitedCells = mutable.Set.empty[Location]
+    var paths = List(Path(List(start)))
+    while (!paths.exists(path => path.getHead == finish) && paths.nonEmpty) {
+      paths = for {
+        path <- paths
+        newPath <- path.extendPaths(visitedCells, World.findThing(start))
+      } yield {
+        newPath
       }
-
     }
-    moved
+    paths.find(path => path.getHead == finish)
   }
 
 }

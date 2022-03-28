@@ -74,11 +74,7 @@ class Moria extends PApplet {
         rect(8, 8, 496, 496)
         rect(520, 8, 496, 496)
         fill(0, 0, 0)
-        text(
-          s" STR: ${World.player.Strength}(${World.player.bStrength}) \n FIN: ${World.player.Finesse}(${World.player.bFinesse}) \n FRT: ${World.player.Fortitude}(${World.player.bFortitude}) \n ENG: ${World.player.Energy}(${World.player.bEnergy}) \n INT: ${World.player.Intelligence}(${World.player.bIntelligence}) \n PRS: ${World.player.Persuasion}(${World.player.bPersuasion}) \n IMD: ${World.player.Intimidation}(${World.player.bIntimidation}) \n RSM: ${World.player.Rationalism}(${World.player.bRationalism}) \n PCP: ${World.player.Perception}(${World.player.bPerception})",
-          540,
-          28
-        )
+
       } else {
         Update(.2f)
       }
@@ -90,8 +86,9 @@ class Moria extends PApplet {
     val currentTime = System.currentTimeMillis
 
     if (currentTime - time > tTime * 1000) {
-      val moved = SimpleNavigation.navigateObject(
-        World.player
+      val moved = SimpleNavigation.findPath(
+        World.player.loc,
+        World.player.dst
       )
 
       if (currentTime - time > tTime * 1000 && (moved || doneNothing)) {
@@ -99,7 +96,9 @@ class Moria extends PApplet {
         println(s"Moved $moved done nothing $doneNothing")
         World.enemies.foreach(enemy => enemy.chooseState())
 
-        World.enemies.foreach(enemy => SimpleNavigation.navigateObject(enemy))
+        World.enemies.foreach(enemy =>
+          SimpleNavigation.findPath(enemy.loc, enemy.dst)
+        )
 
       }
       time = currentTime

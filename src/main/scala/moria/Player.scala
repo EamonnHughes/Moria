@@ -10,29 +10,12 @@ case class Player(
     var ac: Int,
     var toHitMod: Int,
     var damageDealt: Int,
-    var maxHealth: Int,
-    var bStrength: Int,
-    var bFinesse: Int,
-    var bFortitude: Int,
-    var bEnergy: Int,
-    var bIntelligence: Int,
-    var bPersuasion: Int,
-    var bIntimidation: Int,
-    var bRationalism: Int,
-    var bPerception: Int,
-    var Strength: Int,
-    var Finesse: Int,
-    var Fortitude: Int,
-    var Energy: Int,
-    var Intelligence: Int,
-    var Persuasion: Int,
-    var Intimidation: Int,
-    var Rationalism: Int,
-    var Perception: Int
+    var maxHealth: Int
 ) extends NavigatingObject
     with HasHealth
-    with DealsDamage
-    with Stats {
+    with DealsDamage {
+
+  var pathToDest = Option.empty[Path]
 
   def draw(p: PApplet): Unit = {
 
@@ -60,8 +43,19 @@ case class Player(
     p.textSize(12.0f)
     p.text(health, 0, 496)
   }
+  def movePlayer(): Unit = {
+    for {
+      path <- pathToDest
+    } {
+      val nextLoc = path.getHead
+      if (!World.things.exists(thing => thing.loc == nextLoc)) {
+        loc = nextLoc
+        pathToDest = path.tail
+      }
+    }
+  }
   def pClick(posX: Int, posY: Int): Unit = {
-    if (World.rooms.exists(r => r.isInside(posX, posY))) {
+    if (World.rooms.exists(r => r.isInside(Location(posX, posY)))) {
       if (World.findThing(Location(posX, posY)) == null) {
         dst = Location((posX / 16).floor.toInt, (posY / 16).ceil.toInt)
       }
