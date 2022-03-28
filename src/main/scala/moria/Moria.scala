@@ -9,7 +9,6 @@ class Moria extends PApplet {
   val BoardWidth = 1024
   val BoardHeight = 512
   var doneNothing = false
-  var shoot = false
 
   override def setup(): Unit = {}
 
@@ -58,7 +57,6 @@ class Moria extends PApplet {
 
       World.enemies.foreach { enemy => enemy.draw(this) }
       World.player.draw(this)
-      World.projectilesList.foreach { projectile => projectile.draw(this) }
 
       fill(255, 255, 0, 75)
 
@@ -126,11 +124,7 @@ class Moria extends PApplet {
     if (key == 'i' && !World.isMenu) { World.isMenu = true }
     else if (key == 'i' && World.isMenu) { World.isMenu = false }
     if (key == 'c') { World.startUp = false }
-    if (key == 'g') { World.gear.head.showInfo() }
-    if (key == 'h' && World.enemies.length > 0) {
-      shoot = true
-      doneNothing = true
-    }
+
   }
 
 }

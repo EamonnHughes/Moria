@@ -13,9 +13,6 @@ object World {
     Enemy(Location(2, 2), Location(2, 2), 5, 45, 10, 1, 5),
     Enemy(Location(8, 8), Location(8, 8), 5, 45, 10, 1, 5)
   )
-  var gear = List(
-    gearItem("Helm", "Iron", 1, 1, 1, 1, "Boring")
-  )
   var player: Player = Player(
     Location(4, 4),
     Location(4, 4),
