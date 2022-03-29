@@ -11,4 +11,9 @@ case class Player(var loc: Location) extends Thing {
     p.rect(loc.x * 16, loc.y * 16, 16, 16)
   }
   def move: Unit = {}
+
+  def navTo: Unit = {
+    pathToDest =
+      Navigation.findPath(destination, location).flatMap(path => path.tail)
+  }
 }
