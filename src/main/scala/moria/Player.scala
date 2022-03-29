@@ -3,7 +3,7 @@ package moria
 import processing.core.PApplet
 
 case class Player(var loc: Location) extends Thing {
-  //var pathToDest = Option.empty[Path]
+  var pathToDest = Option.empty[Path]
 
   def navigateTo(dst: Location): Unit = {}
   def draw(p: PApplet): Unit = {
