@@ -16,14 +16,18 @@ class Moria extends PApplet {
   override def draw(): Unit = {
     background(100, 100, 100)
     World.rooms.foreach(room => room.draw(this))
-    World.player.navTo
-    World.player.move
-    World.player.draw(this)
 
+    World.player.draw(this)
+    Tick
+
+  }
+  def Tick: Unit = {
     val currentTime = System.currentTimeMillis
     if (currentTime > time + 100) {
       tTick = (tTick + 1) % 10
       time = currentTime
+      World.player.navTo
+      World.player.move
 
     }
 
