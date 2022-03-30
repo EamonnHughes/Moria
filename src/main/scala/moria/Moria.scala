@@ -39,7 +39,7 @@ class Moria extends PApplet {
     val mouseX = event.getX
     val mouseY = event.getY
     if (mouseButton == 39) {
-      World.player.dst = Location(mouseX / 16.toInt, mouseY / 16.toInt)
+      World.player.dst = Location(mouseX / 16, mouseY / 16)
 
     }
   }
