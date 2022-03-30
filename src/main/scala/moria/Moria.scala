@@ -1,6 +1,6 @@
 package moria
-
-import processing.core.PApplet
+import processing.core._
+import processing.event.MouseEvent
 
 class Moria extends PApplet {
   var time: Long = System.currentTimeMillis
@@ -21,6 +21,7 @@ class Moria extends PApplet {
     Tick
 
   }
+
   def Tick: Unit = {
     val currentTime = System.currentTimeMillis
     if (currentTime > time + 100) {
@@ -31,6 +32,16 @@ class Moria extends PApplet {
 
     }
 
+  }
+
+  override def mousePressed(event: MouseEvent): Unit = {
+    val mouseButton = event.getButton
+    val mouseX = event.getX
+    val mouseY = event.getY
+    if (mouseButton == 39) {
+      World.player.dst = Location(mouseX / 16.toInt, mouseY / 16.toInt)
+
+    }
   }
 }
 
