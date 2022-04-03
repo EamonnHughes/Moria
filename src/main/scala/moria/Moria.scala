@@ -15,7 +15,7 @@ class Moria extends PApplet {
 
   override def draw(): Unit = {
     background(100, 100, 100)
-    World.levelFirst.roomList.foreach(room => room.draw(this))
+    World.currentLevel.roomList.foreach(room => room.draw(this))
     World.exit.draw(this)
     World.player.draw(this)
     Tick

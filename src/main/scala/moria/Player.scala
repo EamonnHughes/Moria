@@ -22,7 +22,7 @@ case class Player(var loc: Location, var dst: Location) extends Thing {
   }
 
   def navTo: Unit = {
-    if (World.levelFirst.roomList.exists(room => room.isInRoom(dst))) {
+    if (World.currentLevel.roomList.exists(room => room.isInRoom(dst))) {
       pathToDest = Navigation.findPath(dst, loc).flatMap(path => path.tail)
     } else { dst = loc }
   }
