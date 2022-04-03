@@ -8,7 +8,9 @@ case class Exit(loc: Location) {
     p.rect(loc.x * 16, loc.y * 16, 16, 16)
   }
   def nextLevelCheck: Unit = {
-    if (World.player.loc == loc) {
+    if (
+      World.player.loc == loc && World.currentLevelNumber + 1 < World.levelList.length
+    ) {
       World.currentLevelNumber += 1
     }
   }
