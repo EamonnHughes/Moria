@@ -1,3 +1,3 @@
 package moria
 
-trait HasHealth {var health: Int, var maxHealth: Int}
+trait HasHealth { var health: Int; var maxHealth: Int }

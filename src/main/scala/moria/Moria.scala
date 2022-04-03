@@ -21,6 +21,10 @@ class Moria extends PApplet {
     World.currentLevel.roomList.foreach(room => room.draw(this))
     World.currentLevel.exit.draw(this)
     World.player.draw(this)
+    fill(10, 10, 10)
+    rect(0, 512, 16, -World.player.maxHealth * 16)
+    fill(255, 0, 0)
+    rect(0, 512, 16, -World.player.health * 16)
     Tick
 
   }
