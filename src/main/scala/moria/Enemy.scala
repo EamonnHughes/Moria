@@ -17,6 +17,7 @@ case class Enemy(var loc: Location, var dst: Location) extends Thing {
           .abs(loc.y - World.player.loc.y)
       )
       .toInt
+    dst = World.player.loc
   }
   def move: Unit = {
     for {
@@ -28,11 +29,7 @@ case class Enemy(var loc: Location, var dst: Location) extends Thing {
     }
   }
 
-  def chooseTarget(): Unit = {
-    if (distanceFromPlayer < 3) {
-      dst = World.player.dst
-    }
-  }
+  def chooseTarget(): Unit = {}
 
   def navTo: Unit = {
     if (World.currentLevel.roomList.exists(room => room.isInRoom(dst))) {
