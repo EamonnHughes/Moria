@@ -2,7 +2,7 @@ package moria
 
 import processing.core.PApplet
 
-case class Enemy(var loc: Location) extends Thing {
+case class Enemy(var loc: Location, var dst: Location) extends Thing {
   var distanceFromPlayer = 100
   def draw(p: PApplet): Unit = {
     p.fill(255, 0, 0)
@@ -16,5 +16,9 @@ case class Enemy(var loc: Location) extends Thing {
       )
       .toInt
   }
-  def chooseTarget(): Unit = {}
+  def chooseTarget(): Unit = {
+    if (distanceFromPlayer < 3) {
+      dst = World.player.dst
+    }
+  }
 }
