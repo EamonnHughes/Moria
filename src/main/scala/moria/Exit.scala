@@ -9,7 +9,7 @@ case class Exit(loc: Location) {
   }
   def nextLevelCheck: Unit = {
     if (World.player.loc == loc) {
-      World.currentLevel = World.levelSecond
+      World.currentLevelNumber += 1
     }
   }
 }

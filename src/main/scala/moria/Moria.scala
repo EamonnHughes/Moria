@@ -26,6 +26,7 @@ class Moria extends PApplet {
     val currentTime = System.currentTimeMillis
     if (currentTime > time + 100) {
       World.currentLevel.exit.nextLevelCheck
+      World.currentLevel = World.levelList(World.currentLevelNumber)
       tTick = (tTick + 1) % 10
       time = currentTime
       World.player.navTo
