@@ -4,8 +4,10 @@ import processing.core.PApplet
 
 case class Room(location: Location, width: Int, height: Int) {
   def draw(p: PApplet): Unit = {
+    p.noStroke()
     p.fill(255, 255, 255)
     p.rect(location.x * 16, location.y * 16, width * 16, height * 16)
+    p.stroke(0, 0, 0)
   }
   def isInRoom(loc: Location): Boolean = {
     if (
