@@ -7,4 +7,5 @@ object World {
   def findSquad(location: Location): Thing = { // nulls
     listOfThings.find(thing => thing.loc == location).orNull
   }
+  var exit = Exit(Location(8, 8))
 }
