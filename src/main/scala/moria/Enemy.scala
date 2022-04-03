@@ -3,6 +3,8 @@ package moria
 import processing.core.PApplet
 
 case class Enemy(var loc: Location, var dst: Location) extends Thing {
+
+  var pathToDest = Option.empty[Path]
   var distanceFromPlayer = 100
   def draw(p: PApplet): Unit = {
     p.fill(255, 0, 0)
@@ -16,9 +18,25 @@ case class Enemy(var loc: Location, var dst: Location) extends Thing {
       )
       .toInt
   }
+  def move: Unit = {
+    for {
+      path <- pathToDest
+    } {
+      val nextLoc = path.getHead
+      loc = nextLoc
+      pathToDest = path.tail
+    }
+  }
+
   def chooseTarget(): Unit = {
     if (distanceFromPlayer < 3) {
       dst = World.player.dst
     }
+  }
+
+  def navTo: Unit = {
+    if (World.currentLevel.roomList.exists(room => room.isInRoom(dst))) {
+      pathToDest = Navigation.findPath(dst, loc).flatMap(path => path.tail)
+    } else { dst = loc }
   }
 }
