@@ -7,7 +7,7 @@ object World {
     Level(
       List(Room(Location(4, 4), 24, 24), Room(Location(28, 6), 5, 1)),
       Exit(Location(32, 6)),
-      Location(4, 4),
+      Location(5, 5),
       List(Enemy(Location(3, 3)), Enemy(Location(10, 10)))
     ),
     Level(
