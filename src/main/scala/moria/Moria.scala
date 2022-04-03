@@ -16,7 +16,7 @@ class Moria extends PApplet {
   override def draw(): Unit = {
     background(100, 100, 100)
     World.currentLevel.roomList.foreach(room => room.draw(this))
-    World.exit.draw(this)
+    World.currentLevel.exit.draw(this)
     World.player.draw(this)
     Tick
 
@@ -25,6 +25,7 @@ class Moria extends PApplet {
   def Tick: Unit = {
     val currentTime = System.currentTimeMillis
     if (currentTime > time + 100) {
+      World.currentLevel.exit.nextLevelCheck
       tTick = (tTick + 1) % 10
       time = currentTime
       World.player.navTo

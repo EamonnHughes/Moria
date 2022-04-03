@@ -1,3 +1,3 @@
 package moria
 
-case class Level(roomList: List[Room]) {}
+case class Level(roomList: List[Room], exit: Exit)
