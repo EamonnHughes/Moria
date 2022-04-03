@@ -39,6 +39,8 @@ class Moria extends PApplet {
       time = currentTime
       World.player.navTo
       World.player.move
+      World.currentLevel.enemyList.foreach(enemy => enemy.navTo)
+      World.currentLevel.enemyList.foreach(enemy => enemy.move)
 
     }
 
