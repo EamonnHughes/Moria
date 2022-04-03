@@ -2,7 +2,13 @@ package moria
 
 import processing.core.PApplet
 
-case class Player(var loc: Location, var dst: Location) extends Thing {
+case class Player(
+    var loc: Location,
+    var dst: Location,
+    var health: Int,
+    var maxHealth: Int
+) extends Thing
+    with HasHealth {
   var pathToDest = Option.empty[Path]
 
   def draw(p: PApplet): Unit = {

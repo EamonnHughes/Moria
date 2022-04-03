@@ -1,7 +1,7 @@
 package moria
 
 object World {
-  var player = Player(Location(4, 4), Location(0, 0))
+  var player = Player(Location(4, 4), Location(0, 0), 10, 10)
   var currentLevelNumber = 0
   var levelList = List(
     Level(
