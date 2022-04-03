@@ -12,6 +12,8 @@ case class Exit(loc: Location) {
       World.player.loc == loc && World.currentLevelNumber + 1 < World.levelList.length
     ) {
       World.currentLevelNumber += 1
+      World.player.loc = World.levelList(World.currentLevelNumber).entrance
+      World.player.dst = World.player.loc
     }
   }
 }

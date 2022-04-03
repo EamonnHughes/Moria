@@ -6,7 +6,10 @@ class Moria extends PApplet {
   var time: Long = System.currentTimeMillis
   var tTick = 0
 
-  override def setup(): Unit = {}
+  override def setup(): Unit = {
+
+    World.player.loc = World.levelList(0).entrance
+  }
 
   override def settings(): Unit = {
     size(1024, 512)
