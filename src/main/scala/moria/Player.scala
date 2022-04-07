@@ -15,7 +15,9 @@ case class Player(
     p.fill(0, 255, 0)
     p.rect(loc.x * 16, loc.y * 16, 16, 16)
   }
-  def move: Unit = {
+  def move: Boolean = {
+
+    var moved = false
     for {
       path <- pathToDest
     } {
@@ -23,8 +25,9 @@ case class Player(
 
       loc = nextLoc
       pathToDest = path.tail
-
+      moved = true
     }
+    moved
   }
 
   def navTo: Unit = {
