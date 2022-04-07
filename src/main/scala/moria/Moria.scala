@@ -33,15 +33,16 @@ class Moria extends PApplet {
   def Tick: Unit = {
     val currentTime = System.currentTimeMillis
     if (currentTime > time + 100) {
-      World.currentLevel.exit.nextLevelCheck
-      World.currentLevel = World.levelList(World.currentLevelNumber)
-      tTick = (tTick + 1) % 10
-      time = currentTime
+
       World.player.navTo
       if (World.player.move) {
         World.currentLevel.enemyList.foreach(enemy => enemy.navTo)
 
         World.currentLevel.enemyList.foreach(enemy => enemy.move)
+        World.currentLevel.exit.nextLevelCheck
+        World.currentLevel = World.levelList(World.currentLevelNumber)
+        tTick = (tTick + 1) % 10
+        time = currentTime
       }
 
     }
